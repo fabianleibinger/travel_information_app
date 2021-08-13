@@ -14,7 +14,6 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: Drawer(),
-        //bottomSheet: BottomSheet(),
         body: Stack(
           children: [
             FlutterMap(
