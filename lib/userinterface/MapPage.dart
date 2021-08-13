@@ -41,15 +41,13 @@ class _MapPageState extends State<MapPage> {
                 ),
               ],
             ),
-            Column(
-              children: [
-                Align(
-                  alignment: Alignment(0.5, 0.5),
-                  child: TextField(
-                    controller: TextEditingController(text: "search location"),
-                  ),
+            Container(
+              child: Align(
+                alignment: Alignment(0, -0.8),
+                child: TextField(
+                  controller: TextEditingController(text: "search location"),
                 ),
-              ],
+              ),
             )
           ],
         ));
