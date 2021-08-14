@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:travel_information_app/models/global.dart';
-import 'package:travel_information_app/userinterface/MapPage.dart';
+import 'package:travel_information_app/userinterface/mappage/MapPage.dart';
 
 void main() {
   runApp(MyApp());
