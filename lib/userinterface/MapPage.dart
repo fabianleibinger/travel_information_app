@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:travel_information_app/models/global.dart';
 
 class MapPage extends StatefulWidget {
   MapPage({Key key}) : super(key: key);
@@ -46,7 +47,7 @@ class _MapPageState extends State<MapPage> {
             Align(
               alignment: Alignment(0, -0.75),
               child: Padding(
-                padding: EdgeInsets.fromLTRB(25, 5, 25, 10),
+                padding: EdgeInsets.fromLTRB(25, 7, 25, 10),
                 child: Container(
                   height: 45,
                   child: TextField(
@@ -54,9 +55,11 @@ class _MapPageState extends State<MapPage> {
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.search),
                       labelText: "search location",
+                      filled: true,
+                      fillColor: white,
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30)),
-                      ),
+                          borderRadius: BorderRadius.all(Radius.circular(30)),
+                          borderSide: BorderSide.none),
                     ),
                   ),
                 ),
