@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -40,11 +43,22 @@ class _MapPageState extends State<MapPage> {
                 ),
               ],
             ),
-            Container(
-              child: Align(
-                alignment: Alignment(0, -0.8),
-                child: TextField(
-                  controller: TextEditingController(text: "search location"),
+            Align(
+              alignment: Alignment(0, -0.75),
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(25, 5, 25, 10),
+                child: Container(
+                  height: 45,
+                  child: TextField(
+                    autocorrect: false,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.search),
+                      labelText: "search location",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                      ),
+                    ),
+                  ),
                 ),
               ),
             )
