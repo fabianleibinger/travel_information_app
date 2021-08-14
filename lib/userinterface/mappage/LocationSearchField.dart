@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:travel_information_app/models/global.dart';
 
@@ -8,7 +7,7 @@ class LocationSearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(25, 7, 25, 10),
+      margin: EdgeInsets.fromLTRB(25, 10, 25, 0),
       height: 45,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(_borderRadius)),
