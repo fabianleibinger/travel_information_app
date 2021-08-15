@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:travel_information_app/userinterface/AppDrawer.dart';
+import 'package:travel_information_app/userinterface/drawer/AppDrawer.dart';
 import 'package:travel_information_app/userinterface/mappage/LocationSearchField.dart';
 
 class MapPage extends StatefulWidget {
