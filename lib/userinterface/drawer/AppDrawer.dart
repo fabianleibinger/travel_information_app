@@ -7,7 +7,7 @@ import 'package:travel_information_app/userinterface/drawer/UserDrawerContent.da
 class AppDrawer extends StatelessWidget {
   AppDrawer([this.currentPage]);
 
-  final String currentPage;
+  final String? currentPage;
 
   static final EdgeInsets drawerHeaderPadding = EdgeInsets.all(16.0);
   static final EdgeInsets listViewPadding = EdgeInsets.fromLTRB(0, 8, 0, 0);
@@ -62,5 +62,5 @@ class AppDrawer extends StatelessWidget {
         });
   }
 
-  static List<ListTile> generatePreferenceTiles() {}
+  //static List<ListTile> generatePreferenceTiles() {}
 }

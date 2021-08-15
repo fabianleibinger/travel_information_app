@@ -6,7 +6,7 @@ import 'package:travel_information_app/userinterface/drawer/AppDrawer.dart';
 import 'package:travel_information_app/userinterface/mappage/LocationSearchField.dart';
 
 class MapPage extends StatefulWidget {
-  MapPage({Key key}) : super(key: key);
+  MapPage({Key? key}) : super(key: key);
 
   final double borderRadius = 30;
 
