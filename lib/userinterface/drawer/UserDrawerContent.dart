@@ -31,6 +31,7 @@ class UserDrawerContent extends StatelessWidget {
             AppDrawer.generateTile(
                 context, "User Profile", Icons.account_circle),
             AppDrawer.generateTile(context, "Settings", Icons.settings),
+            AppDrawer.generateTile(context, "Logout", Icons.logout_rounded),
           ],
         ),
       ),
