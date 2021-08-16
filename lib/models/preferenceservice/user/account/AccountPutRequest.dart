@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:travel_information_app/models/user/login/AccessToken.dart';
+import 'package:travel_information_app/models/preferenceservice/user/login/AccessToken.dart';
 
 part 'AccountPutRequest.g.dart';
 
