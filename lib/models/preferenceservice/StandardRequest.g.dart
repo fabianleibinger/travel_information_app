@@ -8,10 +8,10 @@ part of 'StandardRequest.dart';
 
 StandardRequest _$StandardRequestFromJson(Map<String, dynamic> json) =>
     StandardRequest(
-      json['accessToken'],
+      AccessToken.fromJson(json['accessToken'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$StandardRequestToJson(StandardRequest instance) =>
     <String, dynamic>{
-      'accessToken': instance.accessToken,
+      'accessToken': instance.accessToken.toJson(),
     };
