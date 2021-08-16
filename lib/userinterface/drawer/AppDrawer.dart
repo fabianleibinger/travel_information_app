@@ -62,5 +62,16 @@ class AppDrawer extends StatelessWidget {
         });
   }
 
+  static ListTile generateTileWithRoute(
+      BuildContext context, String text, IconData icon, String route) {
+    return ListTile(
+      //selected: currentDrawer == route ? true : false,
+        leading: Icon(icon),
+        title: Text(text),
+        onTap: () {
+          Navigator.pushReplacementNamed(context, route);
+        });
+  }
+
   //static List<ListTile> generatePreferenceTiles() {}
 }
