@@ -23,6 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  http: ^0.13.3
   flutter_map: any
   sliding_up_panel: ^2.0.0+1
   json_annotation: 4.1.0
