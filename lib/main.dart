@@ -8,8 +8,6 @@ import 'package:travel_information_app/userinterface/preferenceprofilespage/Pref
 import 'package:travel_information_app/userinterface/settingspage/SettingsPage.dart';
 import 'package:travel_information_app/userinterface/signuppage/SignUpPage.dart';
 
-import 'models/preferenceservice/user/profile/UserProfile.dart';
-
 void main() {
   runApp(MyApp());
 }

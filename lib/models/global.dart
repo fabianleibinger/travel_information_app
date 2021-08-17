@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 // colors used throughout the app
 Color black = Colors.black;
@@ -74,24 +75,28 @@ TextStyle redButtonText = new TextStyle(
 /// App theme
 ThemeData themeData = ThemeData(
   brightness: Brightness.light,
-  appBarTheme:
-      AppBarTheme(brightness: Brightness.dark, titleTextStyle: whiteHeader),
+  appBarTheme: AppBarTheme(
+    color: green,
+    titleTextStyle: whiteHeader,
+  ),
   primaryColor: green,
-  accentColor: lightGreen,
   errorColor: red,
   visualDensity: VisualDensity.adaptivePlatformDensity,
   toggleableActiveColor: green,
   disabledColor: grey,
   elevatedButtonTheme:
       ElevatedButtonThemeData(style: ElevatedButton.styleFrom(primary: green)),
+  iconTheme: IconThemeData(color: grey, opacity: 0.9),
 );
 
 /// Dark App Theme
 ThemeData darkThemeData = ThemeData(
   brightness: Brightness.dark,
-  appBarTheme: AppBarTheme(titleTextStyle: whiteHeader),
+  appBarTheme: AppBarTheme(
+    color: green,
+    titleTextStyle: whiteHeader,
+  ),
   primaryColor: green,
-  accentColor: lightGreen,
   errorColor: red,
   visualDensity: VisualDensity.adaptivePlatformDensity,
   toggleableActiveColor: green,
