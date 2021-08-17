@@ -9,6 +9,8 @@ class SignupPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FormPage(
-        title: 'sign up', iconData: Icons.logout_rounded, form: SignupForm());
+        title: 'sign up',
+        iconData: Icons.verified_user_outlined,
+        form: SignupForm());
   }
 }

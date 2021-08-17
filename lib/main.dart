@@ -6,6 +6,7 @@ import 'package:travel_information_app/userinterface/loginpage/LoginPage.dart';
 import 'package:travel_information_app/userinterface/mappage/MapPage.dart';
 import 'package:travel_information_app/userinterface/preferenceprofilespage/PreferenceProfilesPage.dart';
 import 'package:travel_information_app/userinterface/settingspage/SettingsPage.dart';
+import 'package:travel_information_app/userinterface/settingspage/accountpage/AccountPage.dart';
 import 'package:travel_information_app/userinterface/signuppage/SignUpPage.dart';
 
 void main() {
@@ -23,6 +24,8 @@ class MyApp extends StatelessWidget {
       home: MapPage(),
       onGenerateRoute: (settings) {
         switch (settings.name) {
+          case Routes.account:
+            return MaterialPageRoute(builder: (context) => AccountPage());
           case Routes.login:
             return MaterialPageRoute(builder: (context) => LoginPage());
           case Routes.map:

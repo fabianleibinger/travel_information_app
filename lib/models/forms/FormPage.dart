@@ -11,7 +11,7 @@ class FormPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title!),
+        title: Text(this.title!),
       ),
       body: Container(
         padding: EdgeInsets.all(30),
@@ -20,11 +20,11 @@ class FormPage extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(50),
               child: Icon(
-                iconData,
+                this.iconData,
                 size: 100,
               ),
             ),
-            form!,
+            this.form!,
           ],
         ),
       ),
