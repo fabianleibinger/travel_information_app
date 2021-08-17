@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travel_information_app/routes/Routes.dart';
 
 import 'AppDrawer.dart';
 
@@ -26,12 +27,15 @@ class UserDrawerContent extends StatelessWidget {
             ListTile(leading: Icon(Icons.map_outlined), title: Text("first")),
             ListTile(leading: Icon(Icons.map_outlined), title: Text("first")),
             Divider(),
+            AppDrawer.generateTile(context, "Preference Profiles",
+                Icons.mode_edit, Routes.preferenceProfiles),
             AppDrawer.generateTile(
-                context, "Preference Profiles", Icons.mode_edit),
+                context, "User Profile", Icons.account_circle, Routes.userProfile),
             AppDrawer.generateTile(
-                context, "User Profile", Icons.account_circle),
-            AppDrawer.generateTile(context, "Settings", Icons.settings),
-            AppDrawer.generateTile(context, "Logout", Icons.logout_rounded),
+                context, "Settings", Icons.settings, Routes.settings),
+            //TODO replace route by (Dialog)
+            AppDrawer.generateTile(
+                context, "Logout", Icons.logout_rounded, Routes.settings),
           ],
         ),
       ),

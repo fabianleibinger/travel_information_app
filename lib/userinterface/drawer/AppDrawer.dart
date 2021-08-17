@@ -48,24 +48,13 @@ class AppDrawer extends StatelessWidget {
   }
 
   /// Generates a single standard tile for the [ListView] in the [AppDrawer]
-  /// [route] to page that shall be opened on tap
   /// [text] shown on tile
   /// [icon] shown to the left of the text on the tile
+  /// [route] to page that shall be opened on tap
   static ListTile generateTile(
-      BuildContext context, String text, IconData icon) {
-    return ListTile(
-        //selected: currentDrawer == route ? true : false,
-        leading: Icon(icon),
-        title: Text(text),
-        onTap: () {
-          Navigator.pop(context);
-        });
-  }
-
-  static ListTile generateTileWithRoute(
       BuildContext context, String text, IconData icon, String route) {
     return ListTile(
-      //selected: currentDrawer == route ? true : false,
+        //selected: currentDrawer == route ? true : false,
         leading: Icon(icon),
         title: Text(text),
         onTap: () {

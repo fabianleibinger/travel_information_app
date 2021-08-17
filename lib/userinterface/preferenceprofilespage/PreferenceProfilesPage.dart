@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-class SignupPage extends StatelessWidget {
-  static const String routeName = "/signup";
+class PreferenceProfilesPage extends StatelessWidget {
+  static const String routeName = "/preferenceProfiles";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold();
   }
-
 }

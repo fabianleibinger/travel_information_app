@@ -9,10 +9,12 @@ class LoginDrawerContent extends StatelessWidget {
       child: ListView(
         padding: AppDrawer.listViewPadding,
         children: [
-          AppDrawer.generateTile(context, "Login", Icons.login_rounded),
-          AppDrawer.generateTileWithRoute(
+          AppDrawer.generateTile(
+              context, "Login", Icons.login_rounded, Routes.login),
+          AppDrawer.generateTile(
               context, "Signup", Icons.verified_user_outlined, Routes.signup),
-          AppDrawer.generateTile(context, "Settings", Icons.settings),
+          AppDrawer.generateTile(
+              context, "Settings", Icons.settings, Routes.settings),
         ],
       ),
     );
