@@ -15,12 +15,12 @@ class UserDrawerContent extends StatelessWidget {
           children: [
             generatePreferenceTiles(),
             Divider(),
-            AppDrawer.generateTile(context, "Preference Profiles",
+            AppDrawer.generateTile(context, "preference profiles",
                 Icons.mode_edit, Routes.preferenceProfiles),
-            AppDrawer.generateTile(context, "User Profile",
+            AppDrawer.generateTile(context, "user profile",
                 Icons.account_circle, Routes.userProfile),
             AppDrawer.generateTile(
-                context, "Settings", Icons.settings, Routes.settings),
+                context, "settings", Icons.settings, Routes.settings),
           ],
         ),
       ),
