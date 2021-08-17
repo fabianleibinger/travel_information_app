@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travel_information_app/models/forms/FormPage.dart';
 
 import 'LoginForm.dart';
 
@@ -7,25 +8,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("login"),
-      ),
-      body: Container(
-        padding: EdgeInsets.all(30),
-        child: ListView(
-          children: [
-            Container(
-              padding: EdgeInsets.all(50),
-              child: Icon(
-                Icons.login_rounded,
-                size: 100,
-              ),
-            ),
-            LoginForm(),
-          ],
-        ),
-      ),
-    );
+    return FormPage(
+        title: 'login', iconData: Icons.login_rounded, form: LoginForm());
   }
 }
