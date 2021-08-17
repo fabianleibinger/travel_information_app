@@ -5,7 +5,7 @@ import 'dart:io';
 /// APIProvider serves as the entrance to the backend server.
 class APIProvider {
   /// The Backend Server Address.
-  final String _serverUrl = 'http://192.168.4.1';
+  final String _serverUrl = 'http://10.0.2.2:8080/';
 
   /// The HTTP status codes.
   static const int OK_STATUS_CODE_SUCCESS = 200;
@@ -15,11 +15,11 @@ class APIProvider {
   final String _headerKey = 'Content-Type';
   final String _headerValue = 'application/json; charset=UTF-8';
 
-  /// Returns the response body of the HTTP Get request to [url].
+  /// Returns the response body of the HTTP Get request to [path].
   /// Expects a Json response body.
   /// Throws an [HttpException] with the [failureText].
-  Future<Map<String, dynamic>> httpGet(String url, String failureText) async {
-    final response = await http.get(Uri.parse(url));
+  Future<Map<String, dynamic>> httpGet(String path, String failureText) async {
+    final response = await http.get(Uri.parse(_serverUrl + path));
     if (response.statusCode == OK_STATUS_CODE_SUCCESS) {
       return json.decode(response.body);
     } else {
@@ -27,12 +27,12 @@ class APIProvider {
     }
   }
 
-  /// Returns the response body of the HTTP Post request to [url] with [body].
+  /// Returns the response body of the HTTP Post request to [path] with [body].
   /// Expects a Json response body.
   /// Throws an [HttpException] with the [failureText].
   Future<Map<String, dynamic>> httpPost(
-      String url, Map<String, dynamic> body, String failureText) async {
-    final response = await http.post(Uri.parse(url),
+      String path, Map<String, dynamic> body, String failureText) async {
+    final response = await http.post(Uri.parse(_serverUrl + path),
         headers: <String, String>{
           _headerKey: _headerValue,
         },
@@ -46,12 +46,12 @@ class APIProvider {
     }
   }
 
-  /// Returns the response body of the HTTP Put request to [url] with [body].
+  /// Returns the response body of the HTTP Put request to [path] with [body].
   /// Expects a Json response body.
   /// Throws an [HttpException] with the [failureText].
   Future<Map<String, dynamic>> httpPut(
-      String url, Map<String, dynamic> body, String failureText) async {
-    final response = await http.put(Uri.parse(url),
+      String path, Map<String, dynamic> body, String failureText) async {
+    final response = await http.put(Uri.parse(_serverUrl + path),
         headers: <String, String>{
           _headerKey: _headerValue,
         },
@@ -63,12 +63,12 @@ class APIProvider {
     }
   }
 
-  /// Returns the response body of the HTTP Delete request to [url] with [body].
+  /// Returns the response body of the HTTP Delete request to [path] with [body].
   /// Expects a Json response body.
   /// Throws an [HttpException] with the [failureText].
   Future<Map<String, dynamic>> httpDelete(
-      String url, Map<String, dynamic> body, String failureText) async {
-    final response = await http.delete(Uri.parse(url),
+      String path, Map<String, dynamic> body, String failureText) async {
+    final response = await http.delete(Uri.parse(_serverUrl + path),
         headers: <String, String>{
           _headerKey: _headerValue,
         },

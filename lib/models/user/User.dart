@@ -10,4 +10,12 @@ class User {
 
   /// Access token for the backend service.
   AccessToken? _accessToken;
+
+  AccessToken getAccessToken() {
+    return _accessToken!;
+  }
+
+  void setAccessToken(AccessToken value) {
+    _accessToken = value;
+  }
 }
