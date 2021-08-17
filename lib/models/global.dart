@@ -80,6 +80,7 @@ ThemeData themeData = ThemeData(
     titleTextStyle: whiteHeader,
   ),
   primaryColor: green,
+  accentColor: lightGreen,
   errorColor: red,
   visualDensity: VisualDensity.adaptivePlatformDensity,
   toggleableActiveColor: green,
@@ -93,10 +94,12 @@ ThemeData themeData = ThemeData(
 ThemeData darkThemeData = ThemeData(
   brightness: Brightness.dark,
   appBarTheme: AppBarTheme(
+    brightness: Brightness.dark,
     color: green,
     titleTextStyle: whiteHeader,
   ),
   primaryColor: green,
+  accentColor: lightGreen,
   errorColor: red,
   visualDensity: VisualDensity.adaptivePlatformDensity,
   toggleableActiveColor: green,

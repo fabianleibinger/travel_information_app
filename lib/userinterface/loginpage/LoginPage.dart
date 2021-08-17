@@ -13,7 +13,7 @@ class LoginPage extends StatelessWidget {
       ),
       body: Container(
         padding: EdgeInsets.all(30),
-        child: Column(
+        child: ListView(
           children: [
             Container(
               padding: EdgeInsets.all(50),
