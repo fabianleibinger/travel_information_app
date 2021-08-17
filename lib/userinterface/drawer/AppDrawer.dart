@@ -61,6 +61,4 @@ class AppDrawer extends StatelessWidget {
           Navigator.pushReplacementNamed(context, route);
         });
   }
-
-  //static List<ListTile> generatePreferenceTiles() {}
 }

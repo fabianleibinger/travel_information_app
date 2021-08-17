@@ -13,32 +13,26 @@ class UserDrawerContent extends StatelessWidget {
         child: ListView(
           padding: AppDrawer.listViewPadding,
           children: [
-            ListTile(leading: Icon(Icons.map_outlined), title: Text("first")),
-            ListTile(leading: Icon(Icons.map_outlined), title: Text("first")),
-            ListTile(leading: Icon(Icons.map_outlined), title: Text("first")),
-            ListTile(leading: Icon(Icons.map_outlined), title: Text("first")),
-            ListTile(leading: Icon(Icons.map_outlined), title: Text("first")),
-            ListTile(leading: Icon(Icons.map_outlined), title: Text("first")),
-            ListTile(leading: Icon(Icons.map_outlined), title: Text("first")),
-            ListTile(leading: Icon(Icons.map_outlined), title: Text("first")),
-            ListTile(leading: Icon(Icons.map_outlined), title: Text("first")),
-            ListTile(leading: Icon(Icons.map_outlined), title: Text("first")),
-            ListTile(leading: Icon(Icons.map_outlined), title: Text("first")),
-            ListTile(leading: Icon(Icons.map_outlined), title: Text("first")),
-            ListTile(leading: Icon(Icons.map_outlined), title: Text("first")),
+            generatePreferenceTiles(),
             Divider(),
             AppDrawer.generateTile(context, "Preference Profiles",
                 Icons.mode_edit, Routes.preferenceProfiles),
-            AppDrawer.generateTile(
-                context, "User Profile", Icons.account_circle, Routes.userProfile),
+            AppDrawer.generateTile(context, "User Profile",
+                Icons.account_circle, Routes.userProfile),
             AppDrawer.generateTile(
                 context, "Settings", Icons.settings, Routes.settings),
-            //TODO replace route by (Dialog)
-            AppDrawer.generateTile(
-                context, "Logout", Icons.logout_rounded, Routes.settings),
           ],
         ),
       ),
     );
+  }
+
+  Widget generatePreferenceTiles() {
+    List<ListTile> list = [];
+    for (int i = 0; i < 5; i++) {
+      list.add(
+          ListTile(leading: Icon(Icons.map_outlined), title: Text("first")));
+    }
+    return Column(children: list);
   }
 }
