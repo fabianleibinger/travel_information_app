@@ -23,17 +23,19 @@ class MyApp extends StatelessWidget {
       home: MapPage(),
       onGenerateRoute: (settings) {
         switch (settings.name) {
-          case Routes.signup:
-            return MaterialPageRoute(builder: (context) => SignupPage());
           case Routes.login:
             return MaterialPageRoute(builder: (context) => LoginPage());
-          case Routes.settings:
-            return MaterialPageRoute(builder: (context) => SettingsPage());
-          case Routes.userProfile:
-            return MaterialPageRoute(builder: (context) => UserProfilePage());
+          case Routes.map:
+            return MaterialPageRoute(builder: (context) => MapPage());
           case Routes.preferenceProfiles:
             return MaterialPageRoute(
                 builder: (context) => PreferenceProfilesPage());
+          case Routes.settings:
+            return MaterialPageRoute(builder: (context) => SettingsPage());
+          case Routes.signup:
+            return MaterialPageRoute(builder: (context) => SignupPage());
+          case Routes.userProfile:
+            return MaterialPageRoute(builder: (context) => UserProfilePage());
         }
       },
     );

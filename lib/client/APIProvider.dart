@@ -17,21 +17,21 @@ class APIProvider {
 
   /// Returns the response body of the HTTP Get request to [path].
   /// Expects a Json response body.
-  /// Throws an [HttpException] with the [failureText].
-  Future<Map<String, dynamic>> httpGet(String path, String failureText) async {
+  /// Throws an [HttpException] with a failure text.
+  Future<Map<String, dynamic>> httpGet(String path) async {
     final response = await http.get(Uri.parse(_serverUrl + path));
     if (response.statusCode == OK_STATUS_CODE_SUCCESS) {
       return json.decode(response.body);
     } else {
-      throw HttpException(failureText);
+      throw HttpException('failed to get from ' + path + ".");
     }
   }
 
   /// Returns the response body of the HTTP Post request to [path] with [body].
   /// Expects a Json response body.
-  /// Throws an [HttpException] with the [failureText].
+  /// Throws an [HttpException] with a failure text.
   Future<Map<String, dynamic>> httpPost(
-      String path, Map<String, dynamic> body, String failureText) async {
+      String path, Map<String, dynamic> body) async {
     final response = await http.post(Uri.parse(_serverUrl + path),
         headers: <String, String>{
           _headerKey: _headerValue,
@@ -42,15 +42,15 @@ class APIProvider {
         responseStatus == CREATED_STATUS_CODE_SUCCESS) {
       return json.decode(response.body);
     } else {
-      throw HttpException(failureText);
+      throw HttpException('failed to post to ' + path + ".");
     }
   }
 
   /// Returns the response body of the HTTP Put request to [path] with [body].
   /// Expects a Json response body.
-  /// Throws an [HttpException] with the [failureText].
+  /// Throws an [HttpException] with a failure text.
   Future<Map<String, dynamic>> httpPut(
-      String path, Map<String, dynamic> body, String failureText) async {
+      String path, Map<String, dynamic> body) async {
     final response = await http.put(Uri.parse(_serverUrl + path),
         headers: <String, String>{
           _headerKey: _headerValue,
@@ -59,15 +59,15 @@ class APIProvider {
     if (response.statusCode == OK_STATUS_CODE_SUCCESS) {
       return json.decode(response.body);
     } else {
-      throw HttpException(failureText);
+      throw HttpException('failed to put to ' + path + ".");
     }
   }
 
   /// Returns the response body of the HTTP Delete request to [path] with [body].
   /// Expects a Json response body.
-  /// Throws an [HttpException] with the [failureText].
+  /// Throws an [HttpException] with a failure text.
   Future<Map<String, dynamic>> httpDelete(
-      String path, Map<String, dynamic> body, String failureText) async {
+      String path, Map<String, dynamic> body) async {
     final response = await http.delete(Uri.parse(_serverUrl + path),
         headers: <String, String>{
           _headerKey: _headerValue,
@@ -76,7 +76,7 @@ class APIProvider {
     if (response.statusCode == OK_STATUS_CODE_SUCCESS) {
       return json.decode(response.body);
     } else {
-      throw HttpException(failureText);
+      throw HttpException('failed to delete from ' + path + ".");
     }
   }
 }

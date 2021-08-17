@@ -3,6 +3,7 @@ import 'package:travel_information_app/client/APIProvider.dart';
 import 'package:travel_information_app/models/preferenceservice/user/login/LoginRequest.dart';
 import 'package:travel_information_app/models/preferenceservice/user/login/LoginResponse.dart';
 import 'package:travel_information_app/models/user/User.dart';
+import 'package:travel_information_app/routes/Routes.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({Key? key}) : super(key: key);
@@ -62,14 +63,18 @@ class _LoginFormState extends State<LoginForm> {
       _formKey.currentState!.save();
       APIProvider apiProvider = new APIProvider();
       Future<Map<String, dynamic>> loginResponseJson = apiProvider.httpPost(
-          "user/login",
-          new LoginRequest(_username!, _password!).toJson(),
-          "Failed to login.");
+        'user/login',
+        new LoginRequest(_username!, _password!).toJson(),
+      );
       loginResponseJson.then((value) {
         LoginResponse response = LoginResponse.fromJson(value);
         User user = User();
         user.setAccessToken(response.accessToken);
-      }).onError((error, stackTrace) => null);
+        Navigator.pushReplacementNamed(context, Routes.map);
+      }).onError((error, stackTrace) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text('Failed to login.')));
+      });
     }
   }
 }
