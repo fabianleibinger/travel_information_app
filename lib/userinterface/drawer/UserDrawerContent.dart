@@ -3,6 +3,7 @@ import 'package:travel_information_app/routes/Routes.dart';
 
 import 'AppDrawer.dart';
 
+/// Content to be displayed in the AppDrawer, if user is logged in.
 class UserDrawerContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
