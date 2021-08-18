@@ -9,6 +9,10 @@ class AccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FormPage(
-        title: 'account', iconData: Icons.account_circle, form: AccountForm());
+        title: 'account',
+        iconData: Icons.account_circle,
+        form: AccountForm(
+          fullname: 'jeff',
+        ));
   }
 }

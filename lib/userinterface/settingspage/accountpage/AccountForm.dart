@@ -5,10 +5,12 @@ import 'package:travel_information_app/models/user/User.dart';
 import 'package:travel_information_app/routes/Routes.dart';
 
 class AccountForm extends StatefulWidget {
-  const AccountForm({Key? key}) : super(key: key);
+  final String? fullname;
+
+  AccountForm({Key? key, this.fullname}) : super(key: key);
 
   @override
-  _AccountFormState createState() => _AccountFormState();
+  _AccountFormState createState() => _AccountFormState(fullname: this.fullname);
 }
 
 class _AccountFormState extends State<AccountForm> {
