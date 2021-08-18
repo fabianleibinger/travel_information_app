@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:travel_information_app/backend/APIProvider.dart';
 import 'package:travel_information_app/models/forms/FormPage.dart';
+import 'package:travel_information_app/models/forms/LoadingCircle.dart';
 import 'package:travel_information_app/models/global.dart';
 import 'package:travel_information_app/models/preferenceservice/StandardRequest.dart';
 import 'package:travel_information_app/models/preferenceservice/user/account/AccountInfo.dart';
@@ -19,10 +20,7 @@ class AccountPage extends StatefulWidget {
 
 class _AccountPageState extends State<AccountPage> {
   /// Serves as a placeholder until account information is received.
-  Widget _child = Container(
-    margin: EdgeInsets.fromLTRB(148, 0, 148, 0),
-    child: CircularProgressIndicator(color: lightGreen),
-  );
+  Widget _child = LoadingCircle();
 
   String? _username;
   String? _fullname;
@@ -57,7 +55,10 @@ class _AccountPageState extends State<AccountPage> {
       this._fullname = accountInfo.fullname;
       this._role = accountInfo.role;
       this.getChild();
-    }).onError((error, stackTrace) => null);
+    }).onError((error, stackTrace) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to receive account info.')));
+    });
   }
 
   /// Returns the child of this widget.
@@ -68,22 +69,25 @@ class _AccountPageState extends State<AccountPage> {
           ListTile(title: Text(this._username!), subtitle: Text('username')),
           ListTile(title: Text(this._fullname!), subtitle: Text('full name')),
           ListTile(title: Text(this._role!), subtitle: Text('role')),
-          FloatingActionButton.extended(
-              label: Text('edit account'),
-              onPressed: () {
-                setState(() {
-                  this._child = Column(
-                    children: [
-                      AccountForm(fullname: this._fullname!),
-                      FloatingActionButton.extended(
-                        backgroundColor: red,
-                        onPressed: () => this.getChild(),
-                        label: Text("back"),
-                      ),
-                    ],
-                  );
-                });
-              }),
+          Container(
+            padding: EdgeInsets.all(30),
+            child: FloatingActionButton.extended(
+                label: Text('edit account'),
+                onPressed: () {
+                  setState(() {
+                    this._child = Column(
+                      children: [
+                        AccountForm(fullname: this._fullname!),
+                        FloatingActionButton.extended(
+                          backgroundColor: red,
+                          onPressed: () => this.getChild(),
+                          label: Text("back"),
+                        ),
+                      ],
+                    );
+                  });
+                }),
+          ),
         ],
       );
     });
