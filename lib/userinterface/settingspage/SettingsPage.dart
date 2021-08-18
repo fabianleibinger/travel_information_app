@@ -22,12 +22,7 @@ class SettingsPage extends StatelessWidget {
   /// Checks if user is logged in and returns tiles accordingly.
   List<BasicListTile> getTiles() {
     User user = User();
-    bool isLoggedIn = true;
-    try {
-      user.getAccessToken();
-    } on TypeError catch (e) {
-      isLoggedIn = false;
-    }
+    bool isLoggedIn = user.isLoggedIn();
 
     List<BasicListTile> tiles = [];
     if (isLoggedIn) {
@@ -38,14 +33,14 @@ class SettingsPage extends StatelessWidget {
           route: Routes.account,
         ),
       );
+      tiles.add(
+        BasicListTile(
+          title: 'logout',
+          iconData: Icons.logout_rounded,
+          route: '',
+        ),
+      );
     }
-    tiles.add(
-      BasicListTile(
-        title: 'logout',
-        iconData: Icons.logout_rounded,
-        route: '',
-      ),
-    );
     return tiles;
   }
 }

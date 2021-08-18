@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:travel_information_app/models/global.dart';
+import 'package:travel_information_app/models/user/User.dart';
 import 'package:travel_information_app/userinterface/drawer/LoginDrawerContent.dart';
 import 'package:travel_information_app/userinterface/drawer/UserDrawerContent.dart';
 
@@ -39,11 +40,14 @@ class AppDrawer extends StatelessWidget {
     );
   }
 
+  /// Returns drawer content according to the logged in status of the user.
   Widget getDrawerContent() {
-    if (true) {
-      return LoginDrawerContent();
-    } else {
+    User user = User();
+    bool isLoggedIn = user.isLoggedIn();
+    if (isLoggedIn) {
       return UserDrawerContent();
+    } else {
+      return LoginDrawerContent();
     }
   }
 

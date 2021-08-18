@@ -11,6 +11,17 @@ class User {
   /// Access token for the backend service.
   AccessToken? _accessToken;
 
+  /// Checks if accessToken is available.
+  bool isLoggedIn() {
+    bool isLoggedIn = true;
+    try {
+      this.getAccessToken();
+    } on TypeError catch (e) {
+      isLoggedIn = false;
+    }
+    return isLoggedIn;
+  }
+
   AccessToken getAccessToken() {
     return _accessToken!;
   }

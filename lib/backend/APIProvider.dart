@@ -15,11 +15,15 @@ class APIProvider {
   final String _headerKey = 'Content-Type';
   final String _headerValue = 'application/json; charset=UTF-8';
 
+  /// The time span until an error is thrown.
+  final Duration _timeout = Duration(seconds: 20);
+
   /// Returns the response body of the HTTP Get request to [path].
   /// Expects a Json response body.
   /// Throws an [HttpException] with a failure text.
   Future<Map<String, dynamic>> httpGet(String path) async {
-    final response = await http.get(Uri.parse(_serverUrl + path));
+    final response =
+        await http.get(Uri.parse(_serverUrl + path)).timeout(_timeout);
     if (response.statusCode == OK_STATUS_CODE_SUCCESS) {
       return json.decode(response.body);
     } else {
@@ -32,11 +36,13 @@ class APIProvider {
   /// Throws an [HttpException] with a failure text.
   Future<Map<String, dynamic>> httpPost(
       String path, Map<String, dynamic> body) async {
-    final response = await http.post(Uri.parse(_serverUrl + path),
-        headers: <String, String>{
-          _headerKey: _headerValue,
-        },
-        body: jsonEncode(body));
+    final response = await http
+        .post(Uri.parse(_serverUrl + path),
+            headers: <String, String>{
+              _headerKey: _headerValue,
+            },
+            body: jsonEncode(body))
+        .timeout(_timeout);
     int responseStatus = response.statusCode;
     if (responseStatus == OK_STATUS_CODE_SUCCESS ||
         responseStatus == CREATED_STATUS_CODE_SUCCESS) {
@@ -51,11 +57,13 @@ class APIProvider {
   /// Throws an [HttpException] with a failure text.
   Future<Map<String, dynamic>> httpPut(
       String path, Map<String, dynamic> body) async {
-    final response = await http.put(Uri.parse(_serverUrl + path),
-        headers: <String, String>{
-          _headerKey: _headerValue,
-        },
-        body: jsonEncode(body));
+    final response = await http
+        .put(Uri.parse(_serverUrl + path),
+            headers: <String, String>{
+              _headerKey: _headerValue,
+            },
+            body: jsonEncode(body))
+        .timeout(_timeout);
     if (response.statusCode == OK_STATUS_CODE_SUCCESS) {
       return json.decode(response.body);
     } else {
@@ -68,11 +76,13 @@ class APIProvider {
   /// Throws an [HttpException] with a failure text.
   Future<Map<String, dynamic>> httpDelete(
       String path, Map<String, dynamic> body) async {
-    final response = await http.delete(Uri.parse(_serverUrl + path),
-        headers: <String, String>{
-          _headerKey: _headerValue,
-        },
-        body: jsonEncode(body));
+    final response = await http
+        .delete(Uri.parse(_serverUrl + path),
+            headers: <String, String>{
+              _headerKey: _headerValue,
+            },
+            body: jsonEncode(body))
+        .timeout(_timeout);
     if (response.statusCode == OK_STATUS_CODE_SUCCESS) {
       return json.decode(response.body);
     } else {

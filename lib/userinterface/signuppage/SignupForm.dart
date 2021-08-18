@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travel_information_app/client/APIProvider.dart';
+import 'package:travel_information_app/backend/APIProvider.dart';
 import 'package:travel_information_app/models/preferenceservice/user/signup/Signup.dart';
 import 'package:travel_information_app/routes/Routes.dart';
 
