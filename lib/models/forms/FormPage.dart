@@ -5,7 +5,8 @@ class FormPage extends StatelessWidget {
   final IconData? iconData;
   final Widget? child;
 
-  FormPage({@required this.title, @required this.iconData, this.child});
+  FormPage(
+      {@required this.title, @required this.iconData, @required this.child});
 
   @override
   Widget build(BuildContext context) {
