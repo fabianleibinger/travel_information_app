@@ -48,9 +48,9 @@ class _LoginFormState extends State<LoginForm> {
           ),
           Container(
             padding: EdgeInsets.all(30),
-            child: ElevatedButton(
+            child: FloatingActionButton.extended(
               onPressed: () => submit(),
-              child: const Text("submit"),
+              label: Text("submit"),
             ),
           ),
         ],

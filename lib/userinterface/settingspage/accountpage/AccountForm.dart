@@ -42,7 +42,7 @@ class _AccountFormState extends State<AccountForm> {
           TextFormField(
             autocorrect: false,
             autovalidateMode: AutovalidateMode.onUserInteraction,
-            decoration: InputDecoration(labelText: "password"),
+            decoration: InputDecoration(labelText: "edit password"),
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return "Please enter a password.";
@@ -52,9 +52,9 @@ class _AccountFormState extends State<AccountForm> {
           ),
           Container(
             padding: EdgeInsets.all(30),
-            child: ElevatedButton(
+            child: FloatingActionButton.extended(
               onPressed: () => submit(),
-              child: const Text("submit"),
+              label: Text("submit"),
             ),
           ),
         ],

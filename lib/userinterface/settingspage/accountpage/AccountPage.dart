@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:travel_information_app/backend/APIProvider.dart';
 import 'package:travel_information_app/models/forms/FormPage.dart';
+import 'package:travel_information_app/models/global.dart';
 import 'package:travel_information_app/models/preferenceservice/StandardRequest.dart';
 import 'package:travel_information_app/models/preferenceservice/user/account/AccountInfo.dart';
 import 'package:travel_information_app/userinterface/settingspage/accountpage/AccountForm.dart';
@@ -17,26 +18,20 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<AccountPage> {
-  String username = 'jeff';
-  String fullname = 'jeff';
-  String role = 'jeff';
+  /// Serves as a placeholder until account information is received.
+  Widget _child = Container(
+    margin: EdgeInsets.fromLTRB(148, 0, 148, 0),
+    child: CircularProgressIndicator(color: lightGreen),
+  );
+
+  String? _username;
+  String? _fullname;
+  String? _role;
 
   @override
   void initState() {
-    APIProvider apiProvider = new APIProvider();
-    Map<String, dynamic> requestBody =
-        StandardRequest(User().getAccessToken()).toJson();
-    Future<Map<String, dynamic>> accountInfoJson =
-        apiProvider.httpPost('user/account', requestBody);
-    accountInfoJson
-        .then((value) {
-          AccountInfo accountInfo = AccountInfo.fromJson(value);
-          this.username = accountInfo.username;
-          this.fullname = accountInfo.fullname;
-          this.role = accountInfo.role;
-        })
-        .onError((error, stackTrace) => null);
     super.initState();
+    this.receiveAccountInfo();
   }
 
   @override
@@ -44,20 +39,53 @@ class _AccountPageState extends State<AccountPage> {
     return FormPage(
       title: 'account',
       iconData: Icons.account_circle,
-      child: Column(
+      child: this._child,
+    );
+  }
+
+  /// Requests the account information at the backend server.
+  /// Sets values accordingly.
+  receiveAccountInfo() {
+    APIProvider apiProvider = new APIProvider();
+    Map<String, dynamic> requestBody =
+        StandardRequest(User().getAccessToken()).toJson();
+    Future<Map<String, dynamic>> accountInfoJson =
+        apiProvider.httpPost('user/account', requestBody);
+    accountInfoJson.then((value) {
+      AccountInfo accountInfo = AccountInfo.fromJson(value);
+      this._username = accountInfo.username;
+      this._fullname = accountInfo.fullname;
+      this._role = accountInfo.role;
+      this.getChild();
+    }).onError((error, stackTrace) => null);
+  }
+
+  /// Returns the child of this widget.
+  getChild() {
+    setState(() {
+      this._child = Column(
         children: [
-          ListTile(title: Text(this.username), subtitle: Text('username')),
-          ListTile(title: Text(this.fullname), subtitle: Text('full name')),
-          ListTile(title: Text(this.role), subtitle: Text('role')),
+          ListTile(title: Text(this._username!), subtitle: Text('username')),
+          ListTile(title: Text(this._fullname!), subtitle: Text('full name')),
+          ListTile(title: Text(this._role!), subtitle: Text('role')),
+          FloatingActionButton.extended(
+              label: Text('edit account'),
+              onPressed: () {
+                setState(() {
+                  this._child = Column(
+                    children: [
+                      AccountForm(fullname: this._fullname!),
+                      FloatingActionButton.extended(
+                        backgroundColor: red,
+                        onPressed: () => this.getChild(),
+                        label: Text("back"),
+                      ),
+                    ],
+                  );
+                });
+              }),
         ],
-      ),
-    );
-    return FormPage(
-      title: 'account',
-      iconData: Icons.account_circle,
-      child: AccountForm(
-        fullname: 'jeff',
-      ),
-    );
+      );
+    });
   }
 }
