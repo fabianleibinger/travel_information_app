@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-/// List Tile, that can be used for menus.
-class BasicListTile extends StatelessWidget {
+/// List Tile, that can navigate to a Route.
+class RouteListTile extends StatelessWidget {
 
   final String? title;
   final IconData? iconData;
   final String? route;
 
-  BasicListTile({this.title, this.iconData, this.route});
+  RouteListTile({this.title, this.iconData, this.route});
 
   @override
   Widget build(BuildContext context) {

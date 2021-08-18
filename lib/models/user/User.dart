@@ -2,7 +2,7 @@ import 'package:travel_information_app/models/preferenceservice/user/login/Acces
 
 /// Singleton class for the current user of the app.
 class User {
-  static final User _instance = User._internal();
+  static User _instance = User._internal();
 
   factory User() => _instance;
 
@@ -20,6 +20,10 @@ class User {
       isLoggedIn = false;
     }
     return isLoggedIn;
+  }
+
+  logout() {
+    _instance = User._internal();
   }
 
   AccessToken getAccessToken() {

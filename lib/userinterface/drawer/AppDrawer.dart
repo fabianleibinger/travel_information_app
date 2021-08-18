@@ -42,8 +42,7 @@ class AppDrawer extends StatelessWidget {
 
   /// Returns drawer content according to the logged in status of the user.
   Widget getDrawerContent() {
-    User user = User();
-    bool isLoggedIn = user.isLoggedIn();
+    bool isLoggedIn = User().isLoggedIn();
     if (isLoggedIn) {
       return UserDrawerContent();
     } else {
