@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:travel_information_app/backend/APIProvider.dart';
-import 'package:travel_information_app/models/preferenceservice/user/login/LoginRequest.dart';
-import 'package:travel_information_app/models/preferenceservice/user/login/LoginResponse.dart';
+import 'package:travel_information_app/models/preferenceservice/user/account/AccountPutRequest.dart';
 import 'package:travel_information_app/models/user/User.dart';
 import 'package:travel_information_app/routes/Routes.dart';
 
-class LoginForm extends StatefulWidget {
-  const LoginForm({Key? key}) : super(key: key);
+class AccountForm extends StatefulWidget {
+  const AccountForm({Key? key}) : super(key: key);
 
   @override
-  _LoginFormState createState() => _LoginFormState();
+  _AccountFormState createState() => _AccountFormState();
 }
 
-class _LoginFormState extends State<LoginForm> {
+class _AccountFormState extends State<AccountForm> {
   final _formKey = GlobalKey<FormState>();
 
-  String? _username;
+  String? fullname;
   String? _password;
+
+  _AccountFormState({this.fullname});
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +28,14 @@ class _LoginFormState extends State<LoginForm> {
           TextFormField(
             autocorrect: false,
             autovalidateMode: AutovalidateMode.onUserInteraction,
-            decoration: InputDecoration(labelText: "username"),
+            decoration: InputDecoration(labelText: "edit full name"),
+            initialValue: this.fullname,
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return "Please enter a username.";
+                return "Please enter a full name.";
               }
             },
-            onSaved: (value) => _username = value,
+            onSaved: (value) => this.fullname = value,
           ),
           TextFormField(
             autocorrect: false,
@@ -62,17 +64,16 @@ class _LoginFormState extends State<LoginForm> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       APIProvider apiProvider = new APIProvider();
-      Future<Map<String, dynamic>> loginResponseJson = apiProvider.httpPost(
-        'user/login',
-        new LoginRequest(_username!, _password!).toJson(),
+      Future<Map<String, dynamic>> accountInfoJson = apiProvider.httpPut(
+        'user/account',
+        new AccountPutRequest(fullname!, _password!, User().getAccessToken())
+            .toJson(),
       );
-      loginResponseJson.then((value) {
-        LoginResponse response = LoginResponse.fromJson(value);
-        User().setAccessToken(response.accessToken);
+      accountInfoJson.then((value) {
         Navigator.pushReplacementNamed(context, Routes.map);
       }).onError((error, stackTrace) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text('Failed to login.')));
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Failed to edit account info.')));
       });
     }
   }
