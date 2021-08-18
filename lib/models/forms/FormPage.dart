@@ -13,20 +13,18 @@ class FormPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(this.title!),
       ),
-      body: Container(
+      body: ListView(
         padding: EdgeInsets.all(30),
-        child: ListView(
-          children: [
-            Container(
-              padding: EdgeInsets.all(50),
-              child: Icon(
-                this.iconData,
-                size: 100,
-              ),
+        children: [
+          Container(
+            padding: EdgeInsets.all(50),
+            child: Icon(
+              this.iconData,
+              size: 100,
             ),
-            this.child!,
-          ],
-        ),
+          ),
+          this.child!,
+        ],
       ),
     );
   }
