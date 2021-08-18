@@ -7,7 +7,8 @@ class DialogListTile extends StatelessWidget {
   final IconData? iconData;
   final Widget? dialog;
 
-  DialogListTile({this.title, this.iconData, this.dialog});
+  DialogListTile(
+      {@required this.title, @required this.iconData, @required this.dialog});
 
   @override
   Widget build(BuildContext context) {

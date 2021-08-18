@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 /// List Tile, that can navigate to a Route.
 class RouteListTile extends StatelessWidget {
-
   final String? title;
   final IconData? iconData;
   final String? route;
 
-  RouteListTile({this.title, this.iconData, this.route});
+  RouteListTile(
+      {@required this.title, @required this.iconData, @required this.route});
 
   @override
   Widget build(BuildContext context) {

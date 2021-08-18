@@ -9,6 +9,9 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FormPage(
-        title: 'login', iconData: Icons.login_rounded, form: LoginForm());
+      title: 'login',
+      iconData: Icons.login_rounded,
+      child: LoginForm(),
+    );
   }
 }

@@ -14,7 +14,7 @@ class SettingsPage extends StatelessWidget {
     return FormPage(
       title: 'settings',
       iconData: Icons.settings,
-      form: Column(
+      child: Column(
         children: this.getTiles(),
       ),
     );

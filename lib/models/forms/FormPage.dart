@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 class FormPage extends StatelessWidget {
   final String? title;
   final IconData? iconData;
-  final Widget? form;
+  final Widget? child;
 
-  FormPage({this.title, this.iconData, this.form});
+  FormPage({@required this.title, @required this.iconData, this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class FormPage extends StatelessWidget {
                 size: 100,
               ),
             ),
-            this.form!,
+            this.child!,
           ],
         ),
       ),
