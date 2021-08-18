@@ -7,9 +7,9 @@ part 'UserProfilePutRequest.g.dart';
 @JsonSerializable(explicitToJson: true)
 class UserProfilePutRequest {
   AccessToken accessToken;
-  UserProfile userProfile;
+  UserProfile profile;
 
-  UserProfilePutRequest(this.accessToken, this.userProfile);
+  UserProfilePutRequest(this.accessToken, this.profile);
 
   factory UserProfilePutRequest.fromJson(Map<String, dynamic> json) =>
       _$UserProfilePutRequestFromJson(json);
