@@ -19,7 +19,12 @@ class UserProfilePage extends StatefulWidget {
 
 class _UserProfilePageState extends State<UserProfilePage> {
   /// Serves as a placeholder until account information is received.
-  Widget _child = LoadingCircle();
+  Widget _child = LoadingCircle(
+    leftPadding: 148,
+    topPadding: 0,
+    rightPadding: 148,
+    bottomPadding: 0,
+  );
 
   @override
   void initState() {

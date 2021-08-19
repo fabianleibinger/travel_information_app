@@ -24,8 +24,7 @@ class SettingsPage extends StatelessWidget {
   /// Checks if user is logged in and returns widgets accordingly.
   List<Widget> getTiles() {
     List<Widget> tiles = [];
-    bool isLoggedIn = User().isLoggedIn();
-    if (isLoggedIn) {
+    if (User().isLoggedIn()) {
       tiles.add(
         RouteListTile(
           title: 'account',
