@@ -3,6 +3,7 @@ import 'package:travel_information_app/backend/APIProvider.dart';
 import 'package:travel_information_app/models/forms/LoadingCircle.dart';
 import 'package:travel_information_app/models/preferenceservice/NameList.dart';
 import 'package:travel_information_app/models/preferenceservice/StandardRequest.dart';
+import 'package:travel_information_app/models/preferenceservice/user/preferenceprofiles/PreferenceProfile.dart';
 import 'package:travel_information_app/routes/Routes.dart';
 import 'package:travel_information_app/models/user/User.dart';
 
@@ -16,6 +17,8 @@ class UserDrawerContent extends StatefulWidget {
 }
 
 class _UserDrawerContentState extends State<UserDrawerContent> {
+  String _selectedTile = User().receivePreferenceProfileName();
+
   Widget _preferenceTiles = LoadingCircle(
     leftPadding: 133,
     topPadding: 30,
@@ -64,11 +67,42 @@ class _UserDrawerContentState extends State<UserDrawerContent> {
     nameListJson.then((value) {
       NameList nameList = NameList.fromJson(value);
       nameList.names.forEach((name) {
-        list.add(AppDrawer.generateTile(
-            context, name, Icons.map_outlined, Routes.map));
+        list.add(getPreferenceTile(context, name, Icons.map_outlined));
       });
       setState(() {
         this._preferenceTiles = Column(children: list);
+      });
+    });
+  }
+
+  /// Returns a List Tile for a preference profile.
+  ListTile getPreferenceTile(BuildContext context, String name, IconData icon) {
+    return ListTile(
+      selected: name == this._selectedTile,
+      leading: Icon(icon),
+      title: Text(name),
+      onTap: () {
+        Navigator.pop(context);
+        selectPreferenceProfile(name);
+      },
+    );
+  }
+
+  /// Selects the current preference profile.
+  /// Receives the preference profile from the backend server.
+  void selectPreferenceProfile(String name) {
+    APIProvider apiProvider = new APIProvider();
+    Future<Map<String, dynamic>> preferenceProfileJson =
+    apiProvider.httpPost(
+      'user/preferenceProfiles/' + name,
+      new StandardRequest(User().getAccessToken()).toJson(),
+    );
+    preferenceProfileJson.then((value) {
+      PreferenceProfile preferenceProfile =
+      PreferenceProfile.fromJson(value);
+      User().setPreferenceProfile(preferenceProfile);
+      setState(() {
+        this._selectedTile = User().receivePreferenceProfileName();
       });
     });
   }
