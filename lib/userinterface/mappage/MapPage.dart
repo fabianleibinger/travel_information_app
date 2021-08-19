@@ -17,9 +17,12 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       drawer: AppDrawer(),
       body: SlidingUpPanel(
         minHeight: 25,
@@ -64,6 +67,13 @@ class _MapPageState extends State<MapPage> {
               children: [
                 Container(
                   height: MediaQuery.of(context).padding.top,
+                ),
+                Container(
+                  alignment: Alignment.topLeft,
+                  child: IconButton(
+                    onPressed: () => _scaffoldKey.currentState!.openDrawer(),
+                    icon: Icon(Icons.menu),
+                  ),
                 ),
                 LocationSearchField(),
               ],
