@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:travel_information_app/models/forms/LoadingCircle.dart';
 import 'package:travel_information_app/userinterface/drawer/AppDrawer.dart';
+import 'package:travel_information_app/userinterface/mappage/LocationPin.dart';
 import 'package:travel_information_app/userinterface/mappage/LocationSearchField.dart';
 
+import 'LocationMap.dart';
+
+/// The home page of this app.
 class MapPage extends StatefulWidget {
   static const String routeName = "/map";
 
@@ -18,6 +22,27 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  LatLng? _userLocation;
+  Widget _map = Center(
+    child: LoadingCircle(
+        leftPadding: 0, rightPadding: 0, topPadding: 0, bottomPadding: 0),
+  );
+
+  /// Receives map and location information to be displayed.
+  @override
+  void initState() {
+    Future<LatLng> currentPosition = LocationPin.getUserLocation();
+    currentPosition
+        .then((value) => setState(() {
+              _userLocation = value;
+              _map = LocationMap(userLocation: _userLocation,);
+            }))
+        .onError((error, stackTrace) => ScaffoldMessenger.of(context)
+            .showSnackBar(
+                SnackBar(content: Text('Failed to receive user position.'))));
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,30 +64,7 @@ class _MapPageState extends State<MapPage> {
         ),
         body: Stack(
           children: [
-            FlutterMap(
-              options: MapOptions(
-                center: LatLng(51.5, -0.09),
-                zoom: 13.0,
-              ),
-              layers: [
-                TileLayerOptions(
-                    urlTemplate:
-                        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                    subdomains: ['a', 'b', 'c']),
-                MarkerLayerOptions(
-                  markers: [
-                    Marker(
-                      width: 80.0,
-                      height: 80.0,
-                      point: LatLng(51.5, -0.09),
-                      builder: (ctx) => Container(
-                        child: FlutterLogo(),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+            _map,
             Column(
               children: [
                 Container(
@@ -75,7 +77,8 @@ class _MapPageState extends State<MapPage> {
                     icon: Icon(Icons.menu),
                   ),
                 ),
-                LocationSearchField(),
+                LocationSearchField(labelText: "start location"),
+                LocationSearchField(labelText: "destination"),
               ],
             ),
           ],
