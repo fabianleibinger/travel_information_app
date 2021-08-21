@@ -14,8 +14,6 @@ class MapPage extends StatefulWidget {
 
   MapPage({Key? key}) : super(key: key);
 
-  final double borderRadius = 30;
-
   @override
   _MapPageState createState() => _MapPageState();
 }
@@ -24,6 +22,9 @@ class _MapPageState extends State<MapPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   LatLng? _userLocation;
+  LatLng? _startLocation;
+  LatLng? _destination;
+
   Widget _map = Center(
     child: LoadingCircle(
         leftPadding: 0, rightPadding: 0, topPadding: 0, bottomPadding: 0),
@@ -100,5 +101,13 @@ class _MapPageState extends State<MapPage> {
         ),
       ),
     );
+  }
+
+  void setStartLocation(LatLng location) {
+    this._startLocation = location;
+  }
+
+  void setDestination(LatLng location) {
+    this._destination = location;
   }
 }

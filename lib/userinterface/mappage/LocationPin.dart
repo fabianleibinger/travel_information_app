@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:travel_information_app/models/global.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
 
