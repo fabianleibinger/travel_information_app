@@ -36,7 +36,9 @@ class _MapPageState extends State<MapPage> {
     currentPosition
         .then((value) => setState(() {
               _userLocation = value;
-              _map = LocationMap(userLocation: _userLocation,);
+              _map = LocationMap(
+                userLocation: _userLocation,
+              );
             }))
         .onError((error, stackTrace) => ScaffoldMessenger.of(context)
             .showSnackBar(
@@ -49,6 +51,19 @@ class _MapPageState extends State<MapPage> {
     return Scaffold(
       key: _scaffoldKey,
       drawer: AppDrawer(),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: null,
+        label: Row(
+          children: [
+            Padding(
+              padding: EdgeInsets.fromLTRB(8, 0, 12, 0),
+              child: Text("route"),
+            ),
+            Icon(Icons.directions_rounded),
+          ],
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       body: SlidingUpPanel(
         minHeight: 25,
         backdropEnabled: true,
