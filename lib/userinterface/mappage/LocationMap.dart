@@ -14,7 +14,7 @@ class LocationMap extends StatelessWidget {
     return FlutterMap(
       options: MapOptions(
         center: userLocation,
-        zoom: 13.0,
+        zoom: 16.0,
       ),
       layers: [
         TileLayerOptions(
