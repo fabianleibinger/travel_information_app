@@ -10,7 +10,7 @@ class LocationPin extends StatelessWidget {
     return Icon(
       Icons.location_pin,
       size: 60,
-      color: green,
+      color: black.withOpacity(0.8),
     );
   }
 
