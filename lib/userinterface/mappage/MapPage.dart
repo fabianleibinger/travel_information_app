@@ -116,7 +116,21 @@ class _MapPageState extends State<MapPage> {
   }
 
   void _onPressed() {
-    print(_startLocationController.text);
-    print(_destinationController.text);
+    List<String> startLatLng = _startLocationController.text.split(" ");
+    List<String> destinationLatLng = _destinationController.text.split(" ");
+    LatLng startLocation;
+    LatLng destinationLocation;
+    try {
+      startLocation = LatLng(
+        double.tryParse(startLatLng.first)!,
+        double.tryParse(startLatLng.last)!,
+      );
+      destinationLocation = LatLng(
+        double.tryParse(destinationLatLng.first)!,
+        double.tryParse(destinationLatLng.last)!,
+      );
+    } on TypeError catch (e) {
+      return;
+    }
   }
 }

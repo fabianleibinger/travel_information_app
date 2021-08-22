@@ -37,8 +37,6 @@ class LocationPin extends StatelessWidget {
       }
     }
     _locationData = await location.getLocation();
-    print(_locationData.latitude!);
-    print(_locationData.longitude!);
     return LatLng(_locationData.latitude!, _locationData.longitude!);
   }
 }
