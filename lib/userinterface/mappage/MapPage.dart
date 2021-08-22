@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:travel_information_app/backend/APIProvider.dart';
 import 'package:travel_information_app/models/forms/LoadingCircle.dart';
+import 'package:travel_information_app/models/preferenceservice/StandardRequest.dart';
+import 'package:travel_information_app/models/preferenceservice/user/preferenceprofiles/PreferenceProfile.dart';
+import 'package:travel_information_app/models/preferenceservice/user/profile/UserProfile.dart';
+import 'package:travel_information_app/models/routingservice/GoogleLatLng.dart';
+import 'package:travel_information_app/models/routingservice/RoutingRequest.dart';
+import 'package:travel_information_app/models/user/User.dart';
 import 'package:travel_information_app/userinterface/drawer/AppDrawer.dart';
 import 'package:travel_information_app/userinterface/mappage/LocationPin.dart';
 import 'package:travel_information_app/userinterface/mappage/LocationSearchField.dart';
@@ -115,22 +122,46 @@ class _MapPageState extends State<MapPage> {
     );
   }
 
+  //TODO routing service
   void _onPressed() {
+    GoogleLatLng startLocation;
+    GoogleLatLng destinationLocation;
+    String routingService;
+    PreferenceProfile? preferenceProfile;
+    UserProfile? userProfile;
+
     List<String> startLatLng = _startLocationController.text.split(" ");
     List<String> destinationLatLng = _destinationController.text.split(" ");
-    LatLng startLocation;
-    LatLng destinationLocation;
     try {
-      startLocation = LatLng(
+      startLocation = GoogleLatLng(
         double.tryParse(startLatLng.first)!,
         double.tryParse(startLatLng.last)!,
       );
-      destinationLocation = LatLng(
+      destinationLocation = GoogleLatLng(
         double.tryParse(destinationLatLng.first)!,
         double.tryParse(destinationLatLng.last)!,
       );
     } on TypeError catch (e) {
       return;
+    }
+
+    routingService = "Openrouteservice";
+
+    if (User().isLoggedIn()) {
+      preferenceProfile = User().getPreferenceProfile();
+
+      APIProvider apiProvider = new APIProvider();
+      Future<Map<String, dynamic>> userProfileJson = apiProvider.httpPost(
+          'user/profile',
+          new StandardRequest(User().getAccessToken()).toJson());
+      userProfileJson.then((value) {
+        userProfile = UserProfile.fromJson(value);
+      }).whenComplete(() {
+        RoutingRequest routingRequest = new RoutingRequest(startLocation,
+            destinationLocation, routingService, preferenceProfile!, userProfile!);
+
+        print(routingRequest.toJson());
+      });
     }
   }
 }
