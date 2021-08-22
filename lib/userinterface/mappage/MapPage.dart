@@ -21,8 +21,8 @@ class _MapPageState extends State<MapPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   LatLng? _userLocation;
-  LatLng? _startLocation;
-  LatLng? _destination;
+  final _startLocationController = TextEditingController();
+  final _destinationController = TextEditingController();
 
   Widget _map = Center(
     child: LoadingCircle(
@@ -47,12 +47,19 @@ class _MapPageState extends State<MapPage> {
   }
 
   @override
+  void dispose() {
+    _startLocationController.dispose();
+    _destinationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
       drawer: AppDrawer(),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: null,
+        onPressed: () => this._onPressed(),
         label: Row(
           children: [
             Padding(
@@ -92,8 +99,14 @@ class _MapPageState extends State<MapPage> {
                     icon: Icon(Icons.menu),
                   ),
                 ),
-                LocationSearchField(labelText: "start location"),
-                LocationSearchField(labelText: "destination"),
+                LocationSearchField(
+                  labelText: "start location",
+                  controller: this._startLocationController,
+                ),
+                LocationSearchField(
+                  labelText: "destination",
+                  controller: this._destinationController,
+                ),
               ],
             ),
           ],
@@ -102,11 +115,8 @@ class _MapPageState extends State<MapPage> {
     );
   }
 
-  void setStartLocation(LatLng location) {
-    this._startLocation = location;
-  }
-
-  void setDestination(LatLng location) {
-    this._destination = location;
+  void _onPressed() {
+    print(_startLocationController.text);
+    print(_destinationController.text);
   }
 }

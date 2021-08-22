@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:travel_information_app/models/global.dart';
-import 'package:latlong2/latlong.dart';
 
 /// A Text field for entering locations.
 class LocationSearchField extends StatelessWidget {
   final String? labelText;
-  LatLng? location;
+  final TextEditingController? controller;
 
-  final RegExp latLngFormat = RegExp(r'\d+(.\d+)?\s\d+(.\d+)?');
+  final RegExp latLngFormat = RegExp(r'\d+(\.\d+)?\s\d+(\.\d+)?');
 
   final double _borderRadius = 30;
 
-  LocationSearchField({@required this.labelText, @required this.location});
+  LocationSearchField({@required this.labelText, @required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +28,7 @@ class LocationSearchField extends StatelessWidget {
         ],
       ),
       child: TextFormField(
+        controller: this.controller,
         autocorrect: false,
         keyboardType: TextInputType.numberWithOptions(decimal: true),
         decoration: InputDecoration(
@@ -43,11 +43,7 @@ class LocationSearchField extends StatelessWidget {
         validator: (value) {},
         onFieldSubmitted: (value) {
           if (value.isNotEmpty) {
-            if (latLngFormat.hasMatch(value)) {
-              List<String> latLng = value.split(" ");
-              this.location = LatLng(
-                  double.tryParse(latLng.first)!, double.tryParse(latLng.last)!);
-            } else {
+            if (!latLngFormat.hasMatch(value)) {
               ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text('Enter latitude and longitude.')));
             }
