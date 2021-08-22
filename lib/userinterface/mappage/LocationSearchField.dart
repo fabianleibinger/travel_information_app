@@ -45,8 +45,8 @@ class LocationSearchField extends StatelessWidget {
           if (value.isNotEmpty) {
             if (latLngFormat.hasMatch(value)) {
               List<String> latLng = value.split(" ");
-              this.location =
-                  LatLng(latLng.first as double, latLng.last as double);
+              this.location = LatLng(
+                  double.tryParse(latLng.first)!, double.tryParse(latLng.last)!);
             } else {
               ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text('Enter latitude and longitude.')));
