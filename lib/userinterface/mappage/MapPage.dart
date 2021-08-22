@@ -5,7 +5,6 @@ import 'package:travel_information_app/models/forms/LoadingCircle.dart';
 import 'package:travel_information_app/userinterface/drawer/AppDrawer.dart';
 import 'package:travel_information_app/userinterface/mappage/LocationPin.dart';
 import 'package:travel_information_app/userinterface/mappage/LocationSearchField.dart';
-
 import 'LocationMap.dart';
 
 /// The home page of this app.

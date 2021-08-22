@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:travel_information_app/models/global.dart';
+import 'package:latlong2/latlong.dart';
 
 /// A Text field for entering locations.
 class LocationSearchField extends StatelessWidget {
   final String? labelText;
+  LatLng? location;
+
+  final RegExp latLngFormat = RegExp(r'\d+(.\d+)?\s\d+(.\d+)?');
 
   final double _borderRadius = 30;
 
-  LocationSearchField({@required this.labelText});
+  LocationSearchField({@required this.labelText, @required this.location});
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +30,7 @@ class LocationSearchField extends StatelessWidget {
       ),
       child: TextFormField(
         autocorrect: false,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
         keyboardType: TextInputType.numberWithOptions(decimal: true),
-        inputFormatters: [
-          FilteringTextInputFormatter.allow(RegExp(r'\d+(,\d+)?\s\d+(,\d+)?'))
-        ],
         decoration: InputDecoration(
           prefixIcon: Icon(Icons.search),
           labelText: this.labelText,
@@ -40,12 +40,19 @@ class LocationSearchField extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(_borderRadius)),
               borderSide: BorderSide.none),
         ),
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return "Please enter latitude and longitude.";
+        validator: (value) {},
+        onFieldSubmitted: (value) {
+          if (value.isNotEmpty) {
+            if (latLngFormat.hasMatch(value)) {
+              List<String> latLng = value.split(" ");
+              this.location =
+                  LatLng(latLng.first as double, latLng.last as double);
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Enter latitude and longitude.')));
+            }
           }
         },
-        onSaved: (value) {},
       ),
     );
   }
