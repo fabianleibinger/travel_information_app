@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../global.dart';
+import '../theme/global.dart';
 
 /// The CircularProgressIndicator for this app.
 /// Left, top, right and bottom padding have to be specified.

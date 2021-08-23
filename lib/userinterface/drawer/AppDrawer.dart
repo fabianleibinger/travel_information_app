@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:travel_information_app/models/global.dart';
+import 'package:travel_information_app/models/theme/global.dart';
 import 'package:travel_information_app/models/user/User.dart';
 import 'package:travel_information_app/userinterface/drawer/LoginDrawerContent.dart';
 import 'package:travel_information_app/userinterface/drawer/UserDrawerContent.dart';

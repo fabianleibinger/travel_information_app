@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travel_information_app/models/global.dart';
+import 'package:travel_information_app/models/theme/global.dart';
 import 'package:travel_information_app/routes/Routes.dart';
 import 'package:travel_information_app/userinterface/UserProfilePage/UserProfilePage.dart';
 import 'package:travel_information_app/userinterface/loginpage/LoginPage.dart';

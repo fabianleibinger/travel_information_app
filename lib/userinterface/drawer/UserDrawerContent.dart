@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:travel_information_app/backend/APIProvider.dart';
 import 'package:travel_information_app/models/forms/LoadingCircle.dart';
-import 'package:travel_information_app/models/preferenceservice/NameList.dart';
+import 'package:travel_information_app/models/NameList.dart';
 import 'package:travel_information_app/models/preferenceservice/StandardRequest.dart';
 import 'package:travel_information_app/models/preferenceservice/user/preferenceprofiles/PreferenceProfile.dart';
 import 'package:travel_information_app/routes/Routes.dart';

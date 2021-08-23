@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:travel_information_app/models/global.dart';
+import 'package:travel_information_app/models/theme/global.dart';
 
 /// A Text field for entering locations.
 class LocationSearchField extends StatelessWidget {

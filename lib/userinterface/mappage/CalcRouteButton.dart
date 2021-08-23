@@ -5,6 +5,7 @@ import 'package:travel_information_app/models/preferenceservice/user/preferencep
 import 'package:travel_information_app/models/preferenceservice/user/profile/UserProfile.dart';
 import 'package:travel_information_app/models/routingservice/GoogleLatLng.dart';
 import 'package:travel_information_app/models/routingservice/RoutingRequest.dart';
+import 'package:travel_information_app/models/routingservice/RoutingRequestWithoutMobilityPreferences.dart';
 import 'package:travel_information_app/models/user/User.dart';
 
 /// Button on the MapPage, that initiates route calculation.
@@ -33,7 +34,7 @@ class CalcRouteButton extends StatelessWidget {
     );
   }
 
-  //TODO routing service
+  /// Sends a routing request to the backend service.
   void _onPressed() {
     GoogleLatLng startLocation;
     GoogleLatLng destinationLocation;
@@ -41,8 +42,9 @@ class CalcRouteButton extends StatelessWidget {
     PreferenceProfile? preferenceProfile;
     UserProfile? userProfile;
 
-    List<String> startLatLng = startLocationController.text.split(" ");
-    List<String> destinationLatLng = destinationController.text.split(" ");
+    /// Getting locations.
+    List<String> startLatLng = this.startLocationController.text.split(" ");
+    List<String> destinationLatLng = this.destinationController.text.split(" ");
     try {
       startLocation = GoogleLatLng(
         double.tryParse(startLatLng.first)!,
@@ -56,11 +58,14 @@ class CalcRouteButton extends StatelessWidget {
       return;
     }
 
-    routingService = "Openrouteservice";
+    /// Getting routing service.
+    routingService = User().receiveRoutingService();
 
     if (User().isLoggedIn()) {
+      /// Getting preference profile.
       preferenceProfile = User().getPreferenceProfile();
 
+      /// Getting user profile.
       APIProvider apiProvider = new APIProvider();
       Future<Map<String, dynamic>> userProfileJson = apiProvider.httpPost(
           'user/profile',
@@ -68,6 +73,7 @@ class CalcRouteButton extends StatelessWidget {
       userProfileJson.then((value) {
         userProfile = UserProfile.fromJson(value);
       }).whenComplete(() {
+        /// Building the routing request.
         RoutingRequest routingRequest = new RoutingRequest(
             startLocation,
             destinationLocation,
@@ -75,8 +81,17 @@ class CalcRouteButton extends StatelessWidget {
             preferenceProfile!,
             userProfile!);
 
+        /// Sending the routing request.
         print(routingRequest.toJson());
       });
+    } else {
+      /// Building the routing request without mobility preferences.
+      RoutingRequestWithoutMobilityPreferences routingRequest =
+          new RoutingRequestWithoutMobilityPreferences(
+              startLocation, destinationLocation, routingService);
+
+      /// Sending the routing request.
+      print(routingRequest.toJson());
     }
   }
 }

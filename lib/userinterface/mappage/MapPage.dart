@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:travel_information_app/backend/APIProvider.dart';
+import 'package:travel_information_app/models/NameList.dart';
 import 'package:travel_information_app/models/forms/LoadingCircle.dart';
+import 'package:travel_information_app/models/user/User.dart';
 import 'package:travel_information_app/userinterface/drawer/AppDrawer.dart';
 import 'package:travel_information_app/userinterface/mappage/LocationPin.dart';
 import 'package:travel_information_app/userinterface/mappage/LocationSearchField.dart';
@@ -29,6 +32,8 @@ class _MapPageState extends State<MapPage> {
     child: LoadingCircle(
         leftPadding: 0, rightPadding: 0, topPadding: 0, bottomPadding: 0),
   );
+
+  String _selectedRoutingService = User().receiveRoutingService();
   Widget _slidingPanelContent = Center(
     child: LoadingCircle(
         leftPadding: 0, rightPadding: 0, topPadding: 0, bottomPadding: 0),
@@ -37,6 +42,7 @@ class _MapPageState extends State<MapPage> {
   @override
   void initState() {
     this._initMapLocation();
+    this._initSlidingPanelContent();
     super.initState();
   }
 
@@ -70,7 +76,7 @@ class _MapPageState extends State<MapPage> {
         ),
         body: Stack(
           children: [
-            _map,
+            this._map,
             Column(
               children: [
                 Container(
@@ -112,5 +118,47 @@ class _MapPageState extends State<MapPage> {
         .onError((error, stackTrace) => ScaffoldMessenger.of(context)
             .showSnackBar(
                 SnackBar(content: Text('Failed to receive user position.'))));
+  }
+
+  /// Receives the names of the available routing services.
+  /// Applies them to the sliding panel.
+  void _initSlidingPanelContent() {
+    APIProvider apiProvider = new APIProvider();
+    Future<Map<String, dynamic>> nameListJson =
+        apiProvider.httpGet("routing/services");
+    List<String> serviceNames;
+    nameListJson.then((value) {
+      NameList nameList = NameList.fromJson(value);
+      serviceNames = nameList.names;
+      this.getSlidingPanelContent(serviceNames);
+    }).onError((error, stackTrace) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to receive routing services.')));
+    });
+  }
+
+  /// Returns list tiles for [names], that can be chosen.
+  getSlidingPanelContent(List<String> names) {
+    List<Widget> listTiles = [];
+    names.forEach((name) {
+      listTiles.add(ListTile(
+        selected: (name == this._selectedRoutingService),
+        leading: Icon(Icons.miscellaneous_services),
+        title: Text(name),
+        onTap: () {
+          User().setRoutingService(name);
+          setState(() {
+            this._selectedRoutingService = User().getRoutingService();
+            this.getSlidingPanelContent(names);
+          });
+        },
+      ));
+    });
+    setState(() {
+      this._slidingPanelContent = ListView(
+        padding: AppDrawer.listViewPadding,
+        children: listTiles,
+      );
+    });
   }
 }

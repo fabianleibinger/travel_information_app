@@ -12,6 +12,7 @@ class User {
   /// Access token for the backend service.
   AccessToken? _accessToken;
   PreferenceProfile? _preferenceProfile;
+  String? _routingService;
 
   /// Checks if accessToken is available.
   bool isLoggedIn() {
@@ -40,6 +41,17 @@ class User {
     return name;
   }
 
+  /// Returns the name of the routing service null-safe.
+  String receiveRoutingService() {
+    String name;
+    try {
+      name = this.getRoutingService();
+    } on TypeError catch (e) {
+      name = "";
+    }
+    return name;
+  }
+
   AccessToken getAccessToken() {
     return _accessToken!;
   }
@@ -54,5 +66,13 @@ class User {
 
   void setPreferenceProfile(PreferenceProfile profile) {
     _preferenceProfile = profile;
+  }
+
+  String getRoutingService() {
+    return _routingService!;
+  }
+
+  void setRoutingService(String name) {
+    _routingService = name;
   }
 }
