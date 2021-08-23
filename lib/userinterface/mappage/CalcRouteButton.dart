@@ -42,6 +42,8 @@ class CalcRouteButton extends StatelessWidget {
     PreferenceProfile? preferenceProfile;
     UserProfile? userProfile;
 
+    bool preferenceProfileSelected;
+
     /// Getting locations.
     List<String> startLatLng = this.startLocationController.text.split(" ");
     List<String> destinationLatLng = this.destinationController.text.split(" ");
@@ -61,8 +63,15 @@ class CalcRouteButton extends StatelessWidget {
     /// Getting routing service.
     routingService = User().receiveRoutingService();
 
-    if (User().isLoggedIn()) {
-      /// Getting preference profile.
+    /// Getting preference profile.
+    try {
+      preferenceProfile = User().getPreferenceProfile();
+      preferenceProfileSelected = true;
+    } on TypeError catch (e) {
+      preferenceProfileSelected = false;
+    }
+
+    if (User().isLoggedIn() && preferenceProfileSelected) {
       preferenceProfile = User().getPreferenceProfile();
 
       /// Getting user profile.
