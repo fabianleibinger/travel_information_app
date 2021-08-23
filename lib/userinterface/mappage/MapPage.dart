@@ -125,7 +125,7 @@ class _MapPageState extends State<MapPage> {
   void _initSlidingPanelContent() {
     APIProvider apiProvider = new APIProvider();
     Future<Map<String, dynamic>> nameListJson =
-        apiProvider.httpGet("routing/services");
+        apiProvider.httpGet("routingServices/names");
     List<String> serviceNames;
     nameListJson.then((value) {
       NameList nameList = NameList.fromJson(value);
