@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:travel_information_app/backend/APIProvider.dart';
+import 'package:travel_information_app/backend/ApiProvider.dart';
 import 'package:travel_information_app/models/forms/FormPage.dart';
 import 'package:travel_information_app/models/forms/LoadingCircle.dart';
 import 'package:travel_information_app/models/preferenceservice/StandardRequest.dart';
@@ -44,7 +44,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
   /// Requests the user profile at the backend server.
   /// Sets values accordingly.
   receiveUserProfile() {
-    APIProvider apiProvider = new APIProvider();
+    ApiProvider apiProvider = new ApiProvider();
     Map<String, dynamic> requestBody =
         StandardRequest(User().getAccessToken()).toJson();
     Future<Map<String, dynamic>> userProfileJson =

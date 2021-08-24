@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travel_information_app/backend/APIProvider.dart';
+import 'package:travel_information_app/backend/ApiProvider.dart';
 import 'package:travel_information_app/models/preferenceservice/StandardRequest.dart';
 import 'package:travel_information_app/models/preferenceservice/user/preferenceprofiles/PreferenceProfile.dart';
 import 'package:travel_information_app/models/preferenceservice/user/profile/UserProfile.dart';
@@ -21,7 +21,7 @@ class CalcRouteButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton.extended(
-      onPressed: () => this._onPressed(),
+      onPressed: () => this._onPressed(context),
       label: Row(
         children: [
           Padding(
@@ -35,7 +35,7 @@ class CalcRouteButton extends StatelessWidget {
   }
 
   /// Sends a routing request to the backend service.
-  void _onPressed() {
+  void _onPressed(BuildContext context) {
     GoogleLatLng startLocation;
     GoogleLatLng destinationLocation;
     String routingService;
@@ -43,6 +43,9 @@ class CalcRouteButton extends StatelessWidget {
     UserProfile? userProfile;
 
     bool preferenceProfileSelected;
+
+    ApiProvider apiProvider = new ApiProvider();
+    Future<Map<String, dynamic>> routingResponseJson;
 
     /// Getting locations.
     List<String> startLatLng = this.startLocationController.text.split(" ");
@@ -75,7 +78,7 @@ class CalcRouteButton extends StatelessWidget {
       preferenceProfile = User().getPreferenceProfile();
 
       /// Getting user profile.
-      APIProvider apiProvider = new APIProvider();
+      ApiProvider apiProvider = new ApiProvider();
       Future<Map<String, dynamic>> userProfileJson = apiProvider.httpPost(
           'user/profile',
           new StandardRequest(User().getAccessToken()).toJson());
@@ -92,6 +95,14 @@ class CalcRouteButton extends StatelessWidget {
 
         /// Sending the routing request.
         print(routingRequest.toJson());
+        routingResponseJson =
+            apiProvider.httpPost('routing', routingRequest.toJson());
+        routingResponseJson.then((value) {
+          print(value);
+        }).onError((error, stackTrace) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text('Failed to receive routes.')));
+        });
       });
     } else {
       /// Building the routing request without mobility preferences.
@@ -101,6 +112,14 @@ class CalcRouteButton extends StatelessWidget {
 
       /// Sending the routing request.
       print(routingRequest.toJson());
+      routingResponseJson =
+          apiProvider.httpPost('routing', routingRequest.toJson());
+      routingResponseJson.then((value) {
+        print(value);
+      }).onError((error, stackTrace) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text('Failed to receive routes.')));
+      });
     }
   }
 }

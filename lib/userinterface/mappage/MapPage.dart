@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-import 'package:travel_information_app/backend/APIProvider.dart';
+import 'package:travel_information_app/backend/ApiProvider.dart';
 import 'package:travel_information_app/models/NameList.dart';
 import 'package:travel_information_app/models/forms/LoadingCircle.dart';
 import 'package:travel_information_app/models/user/User.dart';
@@ -123,7 +123,7 @@ class _MapPageState extends State<MapPage> {
   /// Receives the names of the available routing services.
   /// Applies them to the sliding panel.
   void _initSlidingPanelContent() {
-    APIProvider apiProvider = new APIProvider();
+    ApiProvider apiProvider = new ApiProvider();
     Future<Map<String, dynamic>> nameListJson =
         apiProvider.httpGet("routing/services");
     List<String> serviceNames;

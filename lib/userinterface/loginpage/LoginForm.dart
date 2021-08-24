@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travel_information_app/backend/APIProvider.dart';
+import 'package:travel_information_app/backend/ApiProvider.dart';
 import 'package:travel_information_app/models/preferenceservice/user/login/LoginRequest.dart';
 import 'package:travel_information_app/models/preferenceservice/user/login/LoginResponse.dart';
 import 'package:travel_information_app/models/user/User.dart';
@@ -61,7 +61,7 @@ class _LoginFormState extends State<LoginForm> {
   submit() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      APIProvider apiProvider = new APIProvider();
+      ApiProvider apiProvider = new ApiProvider();
       Future<Map<String, dynamic>> loginResponseJson = apiProvider.httpPost(
         'user/login',
         new LoginRequest(_username!, _password!).toJson(),

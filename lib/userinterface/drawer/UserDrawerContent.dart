@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travel_information_app/backend/APIProvider.dart';
+import 'package:travel_information_app/backend/ApiProvider.dart';
 import 'package:travel_information_app/models/forms/LoadingCircle.dart';
 import 'package:travel_information_app/models/NameList.dart';
 import 'package:travel_information_app/models/preferenceservice/StandardRequest.dart';
@@ -60,7 +60,7 @@ class _UserDrawerContentState extends State<UserDrawerContent> {
   /// Requests the preference profiles of the user at the backend server.
   void generatePreferenceTiles(context) {
     List<ListTile> list = [];
-    APIProvider apiProvider = new APIProvider();
+    ApiProvider apiProvider = new ApiProvider();
     Future<Map<String, dynamic>> nameListJson = apiProvider.httpPost(
         'user/preferenceProfiles',
         new StandardRequest(User().getAccessToken()).toJson());
@@ -91,7 +91,7 @@ class _UserDrawerContentState extends State<UserDrawerContent> {
   /// Selects the current preference profile.
   /// Receives the preference profile from the backend server.
   void selectPreferenceProfile(String name) {
-    APIProvider apiProvider = new APIProvider();
+    ApiProvider apiProvider = new ApiProvider();
     Future<Map<String, dynamic>> preferenceProfileJson =
     apiProvider.httpPost(
       'user/preferenceProfiles/' + name,

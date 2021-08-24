@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travel_information_app/backend/APIProvider.dart';
+import 'package:travel_information_app/backend/ApiProvider.dart';
 import 'package:travel_information_app/models/preferenceservice/user/profile/UserProfile.dart';
 import 'package:travel_information_app/models/preferenceservice/user/profile/UserProfilePutRequest.dart';
 import 'package:travel_information_app/models/user/User.dart';
@@ -105,7 +105,7 @@ class _UserProfileFormState extends State<UserProfileForm> {
   submit() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      APIProvider apiProvider = new APIProvider();
+      ApiProvider apiProvider = new ApiProvider();
       Future<Map<String, dynamic>> userProfileJson = apiProvider.httpPut(
         'user/profile',
         new UserProfilePutRequest(

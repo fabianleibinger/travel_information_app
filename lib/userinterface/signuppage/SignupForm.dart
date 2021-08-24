@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travel_information_app/backend/APIProvider.dart';
+import 'package:travel_information_app/backend/ApiProvider.dart';
 import 'package:travel_information_app/models/preferenceservice/user/signup/Signup.dart';
 import 'package:travel_information_app/routes/Routes.dart';
 
@@ -71,7 +71,7 @@ class _SignupFormState extends State<SignupForm> {
   submit() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      APIProvider apiProvider = new APIProvider();
+      ApiProvider apiProvider = new ApiProvider();
       Future<Map<String, dynamic>> signupResponseJson = apiProvider.httpPost(
         'user/signup',
         new Signup(_username!, _fullname!, _password!).toJson(),

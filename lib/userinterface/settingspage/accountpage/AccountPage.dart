@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:travel_information_app/backend/APIProvider.dart';
+import 'package:travel_information_app/backend/ApiProvider.dart';
 import 'package:travel_information_app/models/forms/FormPage.dart';
 import 'package:travel_information_app/models/forms/LoadingCircle.dart';
 import 'package:travel_information_app/models/theme/global.dart';
@@ -49,7 +49,7 @@ class _AccountPageState extends State<AccountPage> {
   /// Requests the account information at the backend server.
   /// Sets values accordingly.
   receiveAccountInfo() {
-    APIProvider apiProvider = new APIProvider();
+    ApiProvider apiProvider = new ApiProvider();
     Map<String, dynamic> requestBody =
         StandardRequest(User().getAccessToken()).toJson();
     Future<Map<String, dynamic>> accountInfoJson =
