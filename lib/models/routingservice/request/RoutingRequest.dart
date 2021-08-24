@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:travel_information_app/models/preferenceservice/user/preferenceprofiles/PreferenceProfile.dart';
 import 'package:travel_information_app/models/preferenceservice/user/profile/UserProfile.dart';
-import 'package:travel_information_app/models/routingservice/GoogleLatLng.dart';
+import 'package:travel_information_app/models/routingservice/request/GoogleLatLng.dart';
 
 part 'RoutingRequest.g.dart';
 

@@ -3,9 +3,9 @@ import 'package:travel_information_app/backend/ApiProvider.dart';
 import 'package:travel_information_app/models/preferenceservice/StandardRequest.dart';
 import 'package:travel_information_app/models/preferenceservice/user/preferenceprofiles/PreferenceProfile.dart';
 import 'package:travel_information_app/models/preferenceservice/user/profile/UserProfile.dart';
-import 'package:travel_information_app/models/routingservice/GoogleLatLng.dart';
-import 'package:travel_information_app/models/routingservice/RoutingRequest.dart';
-import 'package:travel_information_app/models/routingservice/RoutingRequestWithoutMobilityPreferences.dart';
+import 'package:travel_information_app/models/routingservice/request/GoogleLatLng.dart';
+import 'package:travel_information_app/models/routingservice/request/RoutingRequest.dart';
+import 'package:travel_information_app/models/routingservice/request/RoutingRequestWithoutMobilityPreferences.dart';
 import 'package:travel_information_app/models/user/User.dart';
 
 /// Button on the MapPage, that initiates route calculation.
