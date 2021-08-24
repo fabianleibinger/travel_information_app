@@ -5,6 +5,9 @@ import 'package:travel_information_app/userinterface/UserProfilePage/UserProfile
 import 'package:travel_information_app/userinterface/loginpage/LoginPage.dart';
 import 'package:travel_information_app/userinterface/mappage/MapPage.dart';
 import 'package:travel_information_app/userinterface/preferenceprofilespage/PreferenceProfilesPage.dart';
+import 'package:travel_information_app/userinterface/routepages/routepage/RouteViewPage.dart';
+import 'package:travel_information_app/userinterface/routepages/routesegmentspage/RouteSegmentsPage.dart';
+import 'package:travel_information_app/userinterface/routepages/routespage/RoutesPage.dart';
 import 'package:travel_information_app/userinterface/settingspage/SettingsPage.dart';
 import 'package:travel_information_app/userinterface/settingspage/accountpage/AccountPage.dart';
 import 'package:travel_information_app/userinterface/signuppage/SignUpPage.dart';
@@ -32,6 +35,12 @@ class MyApp extends StatelessWidget {
           case Routes.preferenceProfiles:
             return MaterialPageRoute(
                 builder: (context) => PreferenceProfilesPage());
+          case Routes.routeView:
+            return MaterialPageRoute(builder: (context) => RouteViewPage());
+          case Routes.routeSegments:
+            return MaterialPageRoute(builder: (context) => RouteSegmentsPage());
+          case Routes.routes:
+            return MaterialPageRoute(builder: (context) => RoutesPage());
           case Routes.settings:
             return MaterialPageRoute(builder: (context) => SettingsPage());
           case Routes.signup:

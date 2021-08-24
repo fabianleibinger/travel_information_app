@@ -6,7 +6,10 @@ import 'package:travel_information_app/models/preferenceservice/user/profile/Use
 import 'package:travel_information_app/models/routingservice/request/GoogleLatLng.dart';
 import 'package:travel_information_app/models/routingservice/request/RoutingRequest.dart';
 import 'package:travel_information_app/models/routingservice/request/RoutingRequestWithoutMobilityPreferences.dart';
+import 'package:travel_information_app/models/routingservice/response/RoutingResponse.dart';
 import 'package:travel_information_app/models/user/User.dart';
+import 'package:travel_information_app/routes/Routes.dart';
+import 'package:travel_information_app/userinterface/routepages/routespage/RoutesPageArgument.dart';
 
 /// Button on the MapPage, that initiates route calculation.
 class CalcRouteButton extends StatelessWidget {
@@ -99,9 +102,13 @@ class CalcRouteButton extends StatelessWidget {
             apiProvider.httpPost('routing', routingRequest.toJson());
         routingResponseJson.then((value) {
           print(value);
+          RoutingResponse routingResponse = RoutingResponse.fromJson(value);
+          /// Opening the routes page.
+          Navigator.pushNamed(context, Routes.routes,
+              arguments: RoutesPageArgument(routingResponse));
         }).onError((error, stackTrace) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text('Failed to receive routes.')));
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('Failed to receive routes.')));
         });
       });
     } else {
@@ -116,6 +123,10 @@ class CalcRouteButton extends StatelessWidget {
           apiProvider.httpPost('routing', routingRequest.toJson());
       routingResponseJson.then((value) {
         print(value);
+        RoutingResponse routingResponse = RoutingResponse.fromJson(value);
+        /// Opening the routes page.
+        Navigator.pushNamed(context, Routes.routes,
+            arguments: RoutesPageArgument(routingResponse));
       }).onError((error, stackTrace) {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text('Failed to receive routes.')));
