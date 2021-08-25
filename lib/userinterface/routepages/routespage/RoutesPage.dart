@@ -30,16 +30,27 @@ class RoutesPage extends StatelessWidget {
       double distanceInKM = element.distanceInMeters / 1000;
       tiles.add(
         ListTile(
-          contentPadding: EdgeInsets.fromLTRB(30, 15, 30, 15),
+          contentPadding: EdgeInsets.fromLTRB(30, 15, 30, 0),
           title: Text("route"),
-          subtitle: Text("duration: " +
-              element.durationInMinutes.toStringAsFixed(0) +
-              " min\n" +
-              "distance: " +
+          trailing: Icon(
+            Icons.map_outlined,
+            size: 50,
+          ),
+          subtitle: Text("distance: " +
               distanceInKM.toStringAsFixed(2) +
               " km\n" +
+              "duration: " +
+              element.durationInMinutes.toStringAsFixed(0) +
+              " min\n" +
+              "departure time: " +
+              element.departureTime +
+              "\n" +
+              "arrival time: " +
+              element.arrivalTime +
+              "\n" +
               "number of transfers: " +
-              element.numberOfTransfers.toString()),
+              element.numberOfTransfers.toString() +
+              "\n"),
           onTap: () {
             Navigator.pushNamed(
               context,
