@@ -3,9 +3,11 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:travel_information_app/models/routingservice/response/RoutingResult.dart';
 import 'package:travel_information_app/models/theme/global.dart';
+import 'package:travel_information_app/routes/Routes.dart';
 import 'package:travel_information_app/userinterface/mappage/UserLocationPin.dart';
 import 'package:travel_information_app/userinterface/routepages/routepage/LocationPin.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:travel_information_app/userinterface/routepages/routesegmentspage/RouteSegmentsPageArgument.dart';
 import 'RouteViewPageArgument.dart';
 
 /// Displays a map with a polyline route, start and destination and user location.
@@ -41,6 +43,17 @@ class _RouteViewPageState extends State<RouteViewPage> {
       appBar: AppBar(
         title: Text("route"),
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Navigator.pushNamed(
+            context,
+            Routes.routeSegments,
+            arguments: RouteSegmentsPageArgument(route.segments),
+          );
+        },
+        label: Text("segments"),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Stack(
         children: [
           FlutterMap(
