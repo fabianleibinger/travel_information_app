@@ -27,7 +27,7 @@ class UserLocationMap extends StatelessWidget {
               height: 80.0,
               point: userLocation!,
               anchorPos: AnchorPos.exactly(Anchor(42, 17)),
-              builder: (ctx) => Container(
+              builder: (context) => Container(
                 child: UserLocationPin(
                   color: Colors.black.withOpacity(0.75),
                 ),
