@@ -35,7 +35,7 @@ class _RouteViewPageState extends State<RouteViewPage> {
     LatLng destination = polyline.last;
 
     /// Markers for origin, destination and user.
-    _markerList = this._getMarkerList(origin, destination);
+    _markerList = this.getMarkerList(origin, destination);
     //TODO decide what to do
     //this._addUserLocationMarker();
 
@@ -101,7 +101,7 @@ class _RouteViewPageState extends State<RouteViewPage> {
   }
 
   /// Initiates the marker list for [origin] and [destination].
-  List<Marker> _getMarkerList(LatLng origin, LatLng destination) {
+  List<Marker> getMarkerList(LatLng origin, LatLng destination) {
     List<Marker> markers = [];
 
     /// Origin marker

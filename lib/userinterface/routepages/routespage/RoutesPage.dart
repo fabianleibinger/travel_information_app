@@ -26,7 +26,7 @@ class RoutesPage extends StatelessWidget {
     );
   }
 
-  /// Generates a ListTile  for every provided route
+  /// Generates a ListTile for every provided route.
   List<Widget> generateTiles(BuildContext context, List<RoutingResult> routes) {
     List<Widget> tiles = [];
     routes.forEach((element) {
