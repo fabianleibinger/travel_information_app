@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travel_information_app/models/routingservice/response/RoutingResponse.dart';
 import 'package:travel_information_app/models/routingservice/response/RoutingResult.dart';
 import 'package:travel_information_app/routes/Routes.dart';
 import 'package:travel_information_app/userinterface/routepages/routepage/RouteViewPageArgument.dart';
@@ -12,13 +13,14 @@ class RoutesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final args =
         ModalRoute.of(context)!.settings.arguments as RoutesPageArgument;
+    RoutingResponse response = args.response;
 
     return Scaffold(
       appBar: AppBar(
         title: Text("routes"),
       ),
       body: ListView(
-        children: this.generateTiles(context, args.response.routes),
+        children: this.generateTiles(context, response.routes),
       ),
     );
   }

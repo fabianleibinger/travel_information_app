@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:travel_information_app/models/routingservice/response/RoutingResult.dart';
 import 'package:travel_information_app/models/theme/global.dart';
 import 'package:travel_information_app/userinterface/routepages/routepage/LocationPin.dart';
 import 'package:latlong2/latlong.dart';
@@ -12,9 +14,19 @@ class RouteViewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final args =
         ModalRoute.of(context)!.settings.arguments as RouteViewPageArgument;
+    RoutingResult route = args.route;
 
-    LatLng origin = LatLng(49, 8);
-    LatLng destination = LatLng(49, 9);
+    /// Retrieving polyline.
+    PolylinePoints polylinePoints = PolylinePoints();
+    List<PointLatLng> polyline =
+        polylinePoints.decodePolyline(route.encodedPolyline);
+
+    /// Model conversion.
+    PointLatLng originPoint = polyline.first;
+    PointLatLng destinationPoint = polyline.last;
+    LatLng origin = LatLng(originPoint.latitude, originPoint.longitude);
+    LatLng destination =
+        LatLng(destinationPoint.latitude, destinationPoint.longitude);
 
     return Scaffold(
       appBar: AppBar(
@@ -40,7 +52,9 @@ class RouteViewPage extends StatelessWidget {
                     point: origin,
                     anchorPos: AnchorPos.exactly(Anchor(42, 17)),
                     builder: (ctx) => Container(
-                      child: LocationPin(color: grey.withOpacity(0.9),),
+                      child: LocationPin(
+                        color: grey.withOpacity(0.9),
+                      ),
                     ),
                   ),
                   Marker(
