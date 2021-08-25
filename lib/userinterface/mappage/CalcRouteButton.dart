@@ -98,7 +98,6 @@ class CalcRouteButton extends StatelessWidget {
             userProfile!);
 
         /// Sending the routing request.
-        print(routingRequest.toJson());
         routingResponseJson =
             apiProvider.httpPost('routing', routingRequest.toJson());
         routingResponseJson.then((value) {

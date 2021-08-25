@@ -1,7 +1,7 @@
 import 'package:travel_information_app/models/routingservice/response/RoutingResponse.dart';
 
 class RoutesPageArgument {
-  final RoutingResponse routes;
+  final RoutingResponse response;
 
-  RoutesPageArgument(this.routes);
+  RoutesPageArgument(this.response);
 }
