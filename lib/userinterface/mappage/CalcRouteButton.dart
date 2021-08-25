@@ -38,6 +38,7 @@ class CalcRouteButton extends StatelessWidget {
   }
 
   /// Sends a routing request to the backend service.
+  /// Builds the routing request.
   void _onPressed(BuildContext context) {
     GoogleLatLng startLocation;
     GoogleLatLng destinationLocation;
@@ -121,9 +122,7 @@ class CalcRouteButton extends StatelessWidget {
       routingResponseJson =
           apiProvider.httpPost('routing', routingRequest.toJson());
       routingResponseJson.then((value) {
-        print(value);
         RoutingResponse routingResponse = RoutingResponse.fromJson(value);
-        print(routingResponse.toJson());
         /// Opening the routes page.
         Navigator.pushNamed(context, Routes.routes,
             arguments: RoutesPageArgument(routingResponse));
