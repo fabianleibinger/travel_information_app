@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
 
-/// A Location pin to display a location on the map.
-class LocationPin extends StatelessWidget {
+/// A user ocation pin to display the user position on the map.
+class UserLocationPin extends StatelessWidget {
+  final Color? color;
+
+  UserLocationPin({@required this.color});
+
   @override
   Widget build(BuildContext context) {
     return Icon(
-      Icons.location_pin,
+      Icons.location_history,
       size: 60,
-      color: Colors.black.withOpacity(0.75),
+      color: color!,
     );
   }
 

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'LocationPin.dart';
+import 'UserLocationPin.dart';
 
 /// Map background that displays a user location.
-class LocationMap extends StatelessWidget {
+class UserLocationMap extends StatelessWidget {
   final LatLng? userLocation;
 
-  LocationMap({this.userLocation});
+  UserLocationMap({this.userLocation});
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +18,7 @@ class LocationMap extends StatelessWidget {
       ),
       layers: [
         TileLayerOptions(
-            urlTemplate:
-            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
             subdomains: ['a', 'b', 'c']),
         MarkerLayerOptions(
           markers: [
@@ -29,7 +28,9 @@ class LocationMap extends StatelessWidget {
               point: userLocation!,
               anchorPos: AnchorPos.exactly(Anchor(42, 17)),
               builder: (ctx) => Container(
-                child: LocationPin(),
+                child: UserLocationPin(
+                  color: Colors.black.withOpacity(0.75),
+                ),
               ),
             ),
           ],

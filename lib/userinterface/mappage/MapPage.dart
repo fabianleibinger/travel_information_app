@@ -6,10 +6,10 @@ import 'package:travel_information_app/models/NameList.dart';
 import 'package:travel_information_app/models/forms/LoadingCircle.dart';
 import 'package:travel_information_app/models/user/User.dart';
 import 'package:travel_information_app/userinterface/drawer/AppDrawer.dart';
-import 'package:travel_information_app/userinterface/mappage/LocationPin.dart';
 import 'package:travel_information_app/userinterface/mappage/LocationSearchField.dart';
 import 'CalcRouteButton.dart';
-import 'LocationMap.dart';
+import 'UserLocationMap.dart';
+import 'UserLocationPin.dart';
 
 /// The home page of this app.
 class MapPage extends StatefulWidget {
@@ -107,11 +107,11 @@ class _MapPageState extends State<MapPage> {
 
   /// Receives map and location information to be displayed.
   void _initMapLocation() {
-    Future<LatLng> currentPosition = LocationPin.getUserLocation();
+    Future<LatLng> currentPosition = UserLocationPin.getUserLocation();
     currentPosition
         .then((value) => setState(() {
               _userLocation = value;
-              _map = LocationMap(
+              _map = UserLocationMap(
                 userLocation: _userLocation,
               );
             }))
