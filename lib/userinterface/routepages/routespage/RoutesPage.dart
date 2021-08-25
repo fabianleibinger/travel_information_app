@@ -6,6 +6,7 @@ import 'package:travel_information_app/userinterface/routepages/routepage/RouteV
 
 import 'RoutesPageArgument.dart';
 
+/// Displays a list of routes from a RoutingResponse argument.
 class RoutesPage extends StatelessWidget {
   static const String routeName = "/routes";
 

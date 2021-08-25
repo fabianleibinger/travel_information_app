@@ -7,6 +7,7 @@ import 'package:travel_information_app/userinterface/routepages/routepage/Locati
 import 'package:latlong2/latlong.dart';
 import 'RouteViewPageArgument.dart';
 
+/// Displays a map with a polyline route, start and destination and user location.
 class RouteViewPage extends StatelessWidget {
   static const String routeName = "/routeView";
 
@@ -16,17 +17,10 @@ class RouteViewPage extends StatelessWidget {
         ModalRoute.of(context)!.settings.arguments as RouteViewPageArgument;
     RoutingResult route = args.route;
 
-    /// Retrieving polyline.
-    PolylinePoints polylinePoints = PolylinePoints();
-    List<PointLatLng> polyline =
-        polylinePoints.decodePolyline(route.encodedPolyline);
-
-    /// Model conversion.
-    PointLatLng originPoint = polyline.first;
-    PointLatLng destinationPoint = polyline.last;
-    LatLng origin = LatLng(originPoint.latitude, originPoint.longitude);
-    LatLng destination =
-        LatLng(destinationPoint.latitude, destinationPoint.longitude);
+    /// Polyline, origin and destination location.
+    List<LatLng> polyline = this.retrievePolyline(route.encodedPolyline);
+    LatLng origin = polyline.first;
+    LatLng destination = polyline.last;
 
     return Scaffold(
       appBar: AppBar(
@@ -44,6 +38,13 @@ class RouteViewPage extends StatelessWidget {
                   urlTemplate:
                       "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
                   subdomains: ['a', 'b', 'c']),
+              PolylineLayerOptions(polylines: [
+                Polyline(
+                  points: polyline,
+                  strokeWidth: 4,
+                  color: Colors.blue,
+                ),
+              ]),
               MarkerLayerOptions(
                 markers: [
                   Marker(
@@ -73,5 +74,22 @@ class RouteViewPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  /// Retrieves the polyline from a google encoded polyline.
+  List<LatLng> retrievePolyline(String encodedPolyline) {
+    List<LatLng> polyline = [];
+
+    /// Retrieving polyline.
+    PolylinePoints polylinePoints = PolylinePoints();
+    List<PointLatLng> googlePolyline =
+        polylinePoints.decodePolyline(encodedPolyline);
+
+    /// Model conversion.
+    googlePolyline.forEach((element) {
+      polyline.add(LatLng(element.latitude, element.longitude));
+    });
+
+    return polyline;
   }
 }
