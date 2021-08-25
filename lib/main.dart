@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
       darkTheme: darkThemeData,
       home: MapPage(),
       onGenerateRoute: (settings) {
+        final arguments = settings.arguments;
         switch (settings.name) {
           case Routes.account:
             return MaterialPageRoute(builder: (context) => AccountPage());
@@ -36,11 +37,15 @@ class MyApp extends StatelessWidget {
             return MaterialPageRoute(
                 builder: (context) => PreferenceProfilesPage());
           case Routes.routeView:
-            return MaterialPageRoute(builder: (context) => RouteViewPage());
+            return MaterialPageRoute(builder: (context) => RouteViewPage(),
+                settings: RouteSettings(arguments: settings.arguments));
           case Routes.routeSegments:
-            return MaterialPageRoute(builder: (context) => RouteSegmentsPage());
+            return MaterialPageRoute(builder: (context) => RouteSegmentsPage(),
+                settings: RouteSettings(arguments: settings.arguments));
           case Routes.routes:
-            return MaterialPageRoute(builder: (context) => RoutesPage());
+            return MaterialPageRoute(
+                builder: (context) => RoutesPage(),
+                settings: RouteSettings(arguments: settings.arguments));
           case Routes.settings:
             return MaterialPageRoute(builder: (context) => SettingsPage());
           case Routes.signup:

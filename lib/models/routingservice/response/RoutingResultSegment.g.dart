@@ -9,15 +9,20 @@ part of 'RoutingResultSegment.dart';
 RoutingResultSegment _$RoutingResultSegmentFromJson(
         Map<String, dynamic> json) =>
     RoutingResultSegment(
-      json['encodedPolyline'] as String,
-      (json['durationInMinutes'] as num).toDouble(),
-      (json['distanceInMeters'] as num).toDouble(),
-      json['modeOfTransport'] as String,
-      (json['instructions'] as List<dynamic>).map((e) => e as String).toList(),
-      (json['warnings'] as List<dynamic>).map((e) => e as String).toList(),
-      json['departureTime'] as String,
-      json['arrivalTime'] as String,
-      (json['ascent'] as num).toDouble(),
+      json['encodedPolyline'] as String? ?? '',
+      (json['durationInMinutes'] as num?)?.toDouble() ?? -1.0,
+      (json['distanceInMeters'] as num?)?.toDouble() ?? -1.0,
+      json['modeOfTransport'] as String? ?? '',
+      (json['instructions'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      (json['warnings'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+          [],
+      json['departureTime'] as String? ?? '',
+      json['arrivalTime'] as String? ?? '',
+      (json['ascent'] as num?)?.toDouble() ?? -1.0,
+      (json['descent'] as num?)?.toDouble() ?? -1.0,
     );
 
 Map<String, dynamic> _$RoutingResultSegmentToJson(
@@ -32,4 +37,5 @@ Map<String, dynamic> _$RoutingResultSegmentToJson(
       'departureTime': instance.departureTime,
       'arrivalTime': instance.arrivalTime,
       'ascent': instance.ascent,
+      'descent': instance.descent,
     };

@@ -8,15 +8,17 @@ part of 'RoutingResult.dart';
 
 RoutingResult _$RoutingResultFromJson(Map<String, dynamic> json) =>
     RoutingResult(
-      json['encodedPolyline'] as String,
-      (json['durationInMinutes'] as num).toDouble(),
-      (json['distanceInMeters'] as num).toDouble(),
-      json['departureTime'] as String,
-      json['arrivalTime'] as String,
-      json['numberOfTransfers'] as int,
-      (json['segments'] as List<dynamic>)
-          .map((e) => RoutingResultSegment.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      json['encodedPolyline'] as String? ?? '',
+      (json['durationInMinutes'] as num?)?.toDouble() ?? -1.0,
+      (json['distanceInMeters'] as num?)?.toDouble() ?? -1.0,
+      json['departureTime'] as String? ?? '',
+      json['arrivalTime'] as String? ?? '',
+      json['numberOfTransfers'] as int? ?? -1,
+      (json['segments'] as List<dynamic>?)
+              ?.map((e) =>
+                  RoutingResultSegment.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
     );
 
 Map<String, dynamic> _$RoutingResultToJson(RoutingResult instance) =>

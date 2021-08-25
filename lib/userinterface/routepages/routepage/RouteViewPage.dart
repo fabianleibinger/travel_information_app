@@ -10,7 +10,6 @@ class RouteViewPage extends StatelessWidget {
     final args =
         ModalRoute.of(context)!.settings.arguments as RouteViewPageArgument;
 
-    // TODO: implement build
-    throw UnimplementedError();
+    return Scaffold();
   }
 }

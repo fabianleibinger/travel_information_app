@@ -101,7 +101,6 @@ class CalcRouteButton extends StatelessWidget {
         routingResponseJson =
             apiProvider.httpPost('routing', routingRequest.toJson());
         routingResponseJson.then((value) {
-          print(value);
           RoutingResponse routingResponse = RoutingResponse.fromJson(value);
           /// Opening the routes page.
           Navigator.pushNamed(context, Routes.routes,
@@ -124,6 +123,7 @@ class CalcRouteButton extends StatelessWidget {
       routingResponseJson.then((value) {
         print(value);
         RoutingResponse routingResponse = RoutingResponse.fromJson(value);
+        print(routingResponse.toJson());
         /// Opening the routes page.
         Navigator.pushNamed(context, Routes.routes,
             arguments: RoutesPageArgument(routingResponse));

@@ -5,12 +5,19 @@ part 'RoutingResult.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class RoutingResult {
+  @JsonKey(defaultValue: "")
   String encodedPolyline;
+  @JsonKey(defaultValue: -1.0)
   double durationInMinutes;
+  @JsonKey(defaultValue: -1.0)
   double distanceInMeters;
+  @JsonKey(defaultValue: "")
   String departureTime;
+  @JsonKey(defaultValue: "")
   String arrivalTime;
+  @JsonKey(defaultValue: -1)
   int numberOfTransfers;
+  @JsonKey(defaultValue: [])
   List<RoutingResultSegment> segments;
 
   RoutingResult(
