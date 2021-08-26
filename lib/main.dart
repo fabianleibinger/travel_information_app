@@ -7,6 +7,7 @@ import 'package:travel_information_app/userinterface/mappage/MapPage.dart';
 import 'package:travel_information_app/userinterface/preferenceprofilespage/PreferenceProfilesPage.dart';
 import 'package:travel_information_app/userinterface/routepages/routepage/RouteViewPage.dart';
 import 'package:travel_information_app/userinterface/routepages/routesegmentspage/RouteSegmentsPage.dart';
+import 'package:travel_information_app/userinterface/routepages/routesegmentviewpage/RouteSegmentViewPage.dart';
 import 'package:travel_information_app/userinterface/routepages/routespage/RoutesPage.dart';
 import 'package:travel_information_app/userinterface/settingspage/SettingsPage.dart';
 import 'package:travel_information_app/userinterface/settingspage/accountpage/AccountPage.dart';
@@ -36,15 +37,21 @@ class MyApp extends StatelessWidget {
           case Routes.preferenceProfiles:
             return MaterialPageRoute(
                 builder: (context) => PreferenceProfilesPage());
-          case Routes.routeView:
-            return MaterialPageRoute(builder: (context) => RouteViewPage(),
-                settings: RouteSettings(arguments: settings.arguments));
-          case Routes.routeSegments:
-            return MaterialPageRoute(builder: (context) => RouteSegmentsPage(),
-                settings: RouteSettings(arguments: settings.arguments));
           case Routes.routes:
             return MaterialPageRoute(
                 builder: (context) => RoutesPage(),
+                settings: RouteSettings(arguments: settings.arguments));
+          case Routes.routeSegments:
+            return MaterialPageRoute(
+                builder: (context) => RouteSegmentsPage(),
+                settings: RouteSettings(arguments: settings.arguments));
+          case Routes.routeView:
+            return MaterialPageRoute(
+                builder: (context) => RouteViewPage(),
+                settings: RouteSettings(arguments: settings.arguments));
+          case Routes.segmentView:
+            return MaterialPageRoute(
+                builder: (context) => RouteSegmentViewPage(),
                 settings: RouteSettings(arguments: settings.arguments));
           case Routes.settings:
             return MaterialPageRoute(builder: (context) => SettingsPage());

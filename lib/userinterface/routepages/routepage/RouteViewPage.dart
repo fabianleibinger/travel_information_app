@@ -5,7 +5,7 @@ import 'package:travel_information_app/userinterface/routepages/PolylineView.dar
 import 'package:travel_information_app/userinterface/routepages/routesegmentspage/RouteSegmentsPageArgument.dart';
 import 'RouteViewPageArgument.dart';
 
-/// Displays a PolylineView and a button to lead to RoutingResultSegments.
+/// Displays a PolylineView for a route and a button to lead to RoutingResultSegments.
 class RouteViewPage extends StatelessWidget {
   static const String routeName = "/routeView";
 
