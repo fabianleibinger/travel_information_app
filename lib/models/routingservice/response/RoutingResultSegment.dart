@@ -4,11 +4,13 @@ part 'RoutingResultSegment.g.dart';
 
 @JsonSerializable()
 class RoutingResultSegment {
+  static const double DOUBLE_DEFAULT = -1.0;
+
   @JsonKey(defaultValue: "")
   String encodedPolyline;
-  @JsonKey(defaultValue: -1.0)
+  @JsonKey(defaultValue: DOUBLE_DEFAULT)
   double durationInMinutes;
-  @JsonKey(defaultValue: -1.0)
+  @JsonKey(defaultValue: DOUBLE_DEFAULT)
   double distanceInMeters;
   @JsonKey(defaultValue: "")
   String modeOfTransport;
@@ -20,9 +22,9 @@ class RoutingResultSegment {
   String departureTime;
   @JsonKey(defaultValue: "")
   String arrivalTime;
-  @JsonKey(defaultValue: -1.0)
+  @JsonKey(defaultValue: DOUBLE_DEFAULT)
   double ascent;
-  @JsonKey(defaultValue: -1.0)
+  @JsonKey(defaultValue: DOUBLE_DEFAULT)
   double descent;
 
   RoutingResultSegment(

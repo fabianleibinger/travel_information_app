@@ -92,7 +92,7 @@ class _RouteSegmentsPageState extends State<RouteSegmentsPage> {
   /// Returns the header text widget of a panel including segment information.
   Widget _getPanelHeader(RoutingResultSegment segment) {
     double distanceInKM = segment.distanceInMeters / 1000;
-    return Text("mode: " +
+    String text = "mode: " +
         segment.modeOfTransport +
         "\n" +
         "distance: " +
@@ -106,13 +106,17 @@ class _RouteSegmentsPageState extends State<RouteSegmentsPage> {
         "\n" +
         "arrival time: " +
         segment.arrivalTime +
-        "\n" +
-        "ascent: " +
-        segment.ascent.toString() +
-        " m\n" +
-        "descent: " +
-        segment.descent.toString() +
-        " m\n");
+        "\n";
+    double doubleDefault = RoutingResultSegment.DOUBLE_DEFAULT;
+    if (segment.ascent != doubleDefault && segment.descent != doubleDefault) {
+      text += "ascent: " +
+          segment.ascent.toString() +
+          " m\n" +
+          "descent: " +
+          segment.descent.toString() +
+          " m\n";
+    }
+    return Text(text);
   }
 
   /// Returns the instruction tiles as body of a panel.
