@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:travel_information_app/models/routingservice/response/RoutingResult.dart';
-import 'package:travel_information_app/routes/Routes.dart';
 import 'package:travel_information_app/userinterface/routepages/PolylineView.dart';
-import 'package:travel_information_app/userinterface/routepages/routesegmentspage/RouteSegmentsPageArgument.dart';
 import 'RouteViewPageArgument.dart';
 
 /// Displays a PolylineView for a route and a button to lead to RoutingResultSegments.
@@ -19,7 +18,7 @@ class RouteViewPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("route"),
       ),
-      floatingActionButton: FloatingActionButton.extended(
+      /*floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           Navigator.pushNamed(
             context,
@@ -29,9 +28,21 @@ class RouteViewPage extends StatelessWidget {
         },
         label: Text("segments"),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      body: PolylineView(
-        encodedPolyline: route.encodedPolyline,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,*/
+      body: SlidingUpPanel(
+        minHeight: 55,
+        backdropEnabled: true,
+        panel: Column(
+          children: [
+            ListTile(
+              leading: Icon(Icons.segment_rounded),
+              title: Text("segments"),
+            ),
+          ],
+        ),
+        body: PolylineView(
+          encodedPolyline: route.encodedPolyline,
+        ),
       ),
     );
   }

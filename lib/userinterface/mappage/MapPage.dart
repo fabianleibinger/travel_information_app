@@ -64,11 +64,14 @@ class _MapPageState extends State<MapPage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       body: SlidingUpPanel(
-        minHeight: 25,
+        minHeight: 55,
         backdropEnabled: true,
         panel: Column(
           children: [
-            Icon(Icons.keyboard_arrow_up_rounded),
+            ListTile(
+              leading: Icon(Icons.miscellaneous_services),
+              title: Text("routing services"),
+            ),
             Expanded(
               child: this._slidingPanelContent,
             )
@@ -143,7 +146,6 @@ class _MapPageState extends State<MapPage> {
     names.forEach((name) {
       listTiles.add(ListTile(
         selected: (name == this._selectedRoutingService),
-        leading: Icon(Icons.miscellaneous_services),
         title: Text(name),
         onTap: () {
           User().setRoutingService(name);
