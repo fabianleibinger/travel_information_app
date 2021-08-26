@@ -3,7 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:travel_information_app/models/theme/global.dart';
 import 'package:travel_information_app/userinterface/mappage/UserLocationPin.dart';
-import 'package:travel_information_app/userinterface/routepages/routepage/LocationPin.dart';
+import 'package:travel_information_app/userinterface/routepages/LocationPin.dart';
 import 'package:latlong2/latlong.dart';
 
 /// A map with a polyline route, start and destination and user location.

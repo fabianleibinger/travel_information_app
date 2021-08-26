@@ -3,7 +3,7 @@ import 'package:travel_information_app/models/routingservice/response/RoutingRes
 import 'package:travel_information_app/routes/Routes.dart';
 import 'package:travel_information_app/userinterface/routepages/routesegmentviewpage/RouteSegmentViewPageArgument.dart';
 
-import 'PanelData.dart';
+import 'SegmentPanelData.dart';
 import 'RouteSegmentsPageArgument.dart';
 
 /// Displays a list of route segments from a List<RoutingResultSegment> argument.
@@ -17,7 +17,7 @@ class RouteSegmentsPage extends StatefulWidget {
 }
 
 class _RouteSegmentsPageState extends State<RouteSegmentsPage> {
-  late List<PanelData> _panelData;
+  late List<SegmentPanelData> _panelData;
   bool _needInit = true;
 
   @override
@@ -39,7 +39,7 @@ class _RouteSegmentsPageState extends State<RouteSegmentsPage> {
       body: ListView(
         children: [
           ExpansionPanelList(
-            children: this._panelData.map<ExpansionPanel>((PanelData data) {
+            children: this._panelData.map<ExpansionPanel>((SegmentPanelData data) {
               return ExpansionPanel(
                 headerBuilder: (BuildContext context, bool isExpanded) {
                   return data.header;
@@ -61,11 +61,11 @@ class _RouteSegmentsPageState extends State<RouteSegmentsPage> {
   }
 
   /// Generates the data to be displayed in the panels.
-  List<PanelData> generatePanelData(
+  List<SegmentPanelData> generatePanelData(
       BuildContext context, List<RoutingResultSegment> segments) {
-    return List<PanelData>.generate(segments.length, (int index) {
+    return List<SegmentPanelData>.generate(segments.length, (int index) {
       RoutingResultSegment segment = segments[index];
-      return PanelData(
+      return SegmentPanelData(
         header: ListTile(
           contentPadding: EdgeInsets.fromLTRB(30, 15, 30, 0),
           title: Text("segment " + (index + 1).toString()),
