@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:travel_information_app/models/routingservice/response/RoutingResult.dart';
 import 'package:travel_information_app/userinterface/routepages/PolylineView.dart';
+import 'package:travel_information_app/userinterface/routepages/routeviewpage/routesegmentswidget/RouteSegmentsWidget.dart';
 import 'RouteViewPageArgument.dart';
 
-/// Displays a PolylineView for a route and a button to lead to RoutingResultSegments.
+/// Displays a PolylineView for a route and SlidingUpPanel for route segments.
 class RouteViewPage extends StatelessWidget {
   static const String routeName = "/routeView";
 
@@ -18,17 +19,6 @@ class RouteViewPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("route"),
       ),
-      /*floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          Navigator.pushNamed(
-            context,
-            Routes.routeSegments,
-            arguments: RouteSegmentsPageArgument(route.segments),
-          );
-        },
-        label: Text("segments"),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,*/
       body: SlidingUpPanel(
         minHeight: 55,
         backdropEnabled: true,
@@ -37,6 +27,9 @@ class RouteViewPage extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.segment_rounded),
               title: Text("segments"),
+            ),
+            Expanded(
+              child: RouteSegmentsWidget(segments: route.segments),
             ),
           ],
         ),

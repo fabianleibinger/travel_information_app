@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:travel_information_app/models/routingservice/response/RoutingResponse.dart';
 import 'package:travel_information_app/models/routingservice/response/RoutingResult.dart';
 import 'package:travel_information_app/routes/Routes.dart';
-import 'package:travel_information_app/userinterface/routepages/routepage/RouteViewPageArgument.dart';
+import 'package:travel_information_app/userinterface/routepages/routeviewpage/RouteViewPageArgument.dart';
 
 import 'RoutesPageArgument.dart';
 

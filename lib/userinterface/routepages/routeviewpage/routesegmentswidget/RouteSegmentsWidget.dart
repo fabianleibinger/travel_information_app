@@ -4,61 +4,52 @@ import 'package:travel_information_app/routes/Routes.dart';
 import 'package:travel_information_app/userinterface/routepages/routesegmentviewpage/RouteSegmentViewPageArgument.dart';
 
 import 'SegmentPanelData.dart';
-import 'RouteSegmentsPageArgument.dart';
 
-/// Displays a list of route segments from a List<RoutingResultSegment> argument.
-class RouteSegmentsPage extends StatefulWidget {
-  static const String routeName = "/routeSegments";
+/// Displays a list of route segments from a List<RoutingResultSegment>.
+class RouteSegmentsWidget extends StatefulWidget {
+  final List<RoutingResultSegment> segments;
 
-  RouteSegmentsPage({Key? key}) : super(key: key);
+  RouteSegmentsWidget({Key? key, required this.segments}) : super(key: key);
 
   @override
-  _RouteSegmentsPageState createState() => _RouteSegmentsPageState();
+  _RouteSegmentsWidgetState createState() => _RouteSegmentsWidgetState();
 }
 
-class _RouteSegmentsPageState extends State<RouteSegmentsPage> {
+class _RouteSegmentsWidgetState extends State<RouteSegmentsWidget> {
   late List<SegmentPanelData> _panelData;
   bool _needInit = true;
 
   @override
   Widget build(BuildContext context) {
-    final args =
-        ModalRoute.of(context)!.settings.arguments as RouteSegmentsPageArgument;
-    List<RoutingResultSegment> segments = args.routeSegments;
-
     /// init _panelData only once.
     if (_needInit) {
-      this._panelData = this.generatePanelData(context, segments);
+      this._panelData = this.generatePanelData(context, widget.segments);
       _needInit = false;
     }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("segments"),
-      ),
-      body: Scrollbar(
-        child: ListView(
-          children: [
-            ExpansionPanelList(
-              children:
-                  this._panelData.map<ExpansionPanel>((SegmentPanelData data) {
-                return ExpansionPanel(
-                  headerBuilder: (BuildContext context, bool isExpanded) {
-                    return data.header;
-                  },
-                  body: data.body,
-                  isExpanded: data.expanded,
-                );
-              }).toList(),
-              expansionCallback: (int index, bool isExpanded) {
-                setState(() {
-                  this._panelData[index].expanded =
-                      !this._panelData[index].expanded;
-                });
-              },
-            ),
-          ],
-        ),
+    return Scrollbar(
+      child: ListView(
+        shrinkWrap: true,
+        children: [
+          ExpansionPanelList(
+            children:
+                this._panelData.map<ExpansionPanel>((SegmentPanelData data) {
+              return ExpansionPanel(
+                headerBuilder: (BuildContext context, bool isExpanded) {
+                  return data.header;
+                },
+                body: data.body,
+                isExpanded: data.expanded,
+              );
+            }).toList(),
+            expansionCallback: (int index, bool isExpanded) {
+              setState(() {
+                this._panelData[index].expanded =
+                    !this._panelData[index].expanded;
+              });
+            },
+          ),
+        ],
       ),
     );
   }
