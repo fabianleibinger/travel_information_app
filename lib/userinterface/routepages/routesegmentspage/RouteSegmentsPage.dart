@@ -4,6 +4,7 @@ import 'package:travel_information_app/models/routingservice/response/RoutingRes
 import 'PanelData.dart';
 import 'RouteSegmentsPageArgument.dart';
 
+/// Displays a list of route segments from a List<RoutingResultSegment> argument.
 class RouteSegmentsPage extends StatefulWidget {
   static const String routeName = "/routeSegments";
 

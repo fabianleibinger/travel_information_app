@@ -6,7 +6,7 @@ import 'package:travel_information_app/userinterface/mappage/UserLocationPin.dar
 import 'package:travel_information_app/userinterface/routepages/routepage/LocationPin.dart';
 import 'package:latlong2/latlong.dart';
 
-/// Displays a map with a polyline route, start and destination and user location.
+/// A map with a polyline route, start and destination and user location.
 class PolylineView extends StatefulWidget {
   final String encodedPolyline;
 
