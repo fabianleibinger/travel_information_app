@@ -36,26 +36,29 @@ class _RouteSegmentsPageState extends State<RouteSegmentsPage> {
       appBar: AppBar(
         title: Text("segments"),
       ),
-      body: ListView(
-        children: [
-          ExpansionPanelList(
-            children: this._panelData.map<ExpansionPanel>((SegmentPanelData data) {
-              return ExpansionPanel(
-                headerBuilder: (BuildContext context, bool isExpanded) {
-                  return data.header;
-                },
-                body: data.body,
-                isExpanded: data.expanded,
-              );
-            }).toList(),
-            expansionCallback: (int index, bool isExpanded) {
-              setState(() {
-                this._panelData[index].expanded =
-                    !this._panelData[index].expanded;
-              });
-            },
-          ),
-        ],
+      body: Scrollbar(
+        child: ListView(
+          children: [
+            ExpansionPanelList(
+              children:
+                  this._panelData.map<ExpansionPanel>((SegmentPanelData data) {
+                return ExpansionPanel(
+                  headerBuilder: (BuildContext context, bool isExpanded) {
+                    return data.header;
+                  },
+                  body: data.body,
+                  isExpanded: data.expanded,
+                );
+              }).toList(),
+              expansionCallback: (int index, bool isExpanded) {
+                setState(() {
+                  this._panelData[index].expanded =
+                      !this._panelData[index].expanded;
+                });
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
