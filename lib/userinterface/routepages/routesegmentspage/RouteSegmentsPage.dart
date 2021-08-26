@@ -30,11 +30,12 @@ class _RouteSegmentsPageState extends State<RouteSegmentsPage> {
     }
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text("segments"),
-        ),
-        body: SingleChildScrollView(
-          child: ExpansionPanelList(
+      appBar: AppBar(
+        title: Text("segments"),
+      ),
+      body: ListView(
+        children: [
+          ExpansionPanelList(
             children: this._panelData.map<ExpansionPanel>((PanelData data) {
               return ExpansionPanel(
                 headerBuilder: (BuildContext context, bool isExpanded) {
@@ -48,11 +49,12 @@ class _RouteSegmentsPageState extends State<RouteSegmentsPage> {
               setState(() {
                 this._panelData[index].expanded =
                     !this._panelData[index].expanded;
-                print(this._panelData[index].expanded);
               });
             },
           ),
-        ));
+        ],
+      ),
+    );
   }
 
   /// Generates the data to be displayed in the panels.
@@ -64,14 +66,17 @@ class _RouteSegmentsPageState extends State<RouteSegmentsPage> {
           contentPadding: EdgeInsets.fromLTRB(30, 15, 30, 0),
           title: Text("segment " + (index + 1).toString()),
           subtitle: this._getPanelHeader(segment),
+          trailing: Icon(Icons.map_outlined, size: 50),
+          onTap: () {},
         ),
         body: Column(
-          children: [ListView(children: this._getPanelBodyTiles(segment))],
+          children: this._getPanelBodyTiles(segment),
         ),
       );
     });
   }
 
+  /// Returns the header text widget of a panel including segment information.
   Widget _getPanelHeader(RoutingResultSegment segment) {
     double distanceInKM = segment.distanceInMeters / 1000;
     return Text("mode: " +
@@ -97,14 +102,17 @@ class _RouteSegmentsPageState extends State<RouteSegmentsPage> {
         " m\n");
   }
 
-  List<ListTile> _getPanelBodyTiles(RoutingResultSegment segment) {
-    List<ListTile> tiles = [];
-
-    tiles.add(ListTile(title: Text("map")));
+  /// Returns the instruction tiles as body of a panel.
+  List<Widget> _getPanelBodyTiles(RoutingResultSegment segment) {
+    List<Widget> tiles = [];
+    tiles.add(Text(
+      "instructions: ",
+      style: TextStyle(fontSize: 30),
+    ));
+    tiles.add(Divider());
     segment.instructions.forEach((element) {
       tiles.add(ListTile(title: Text(element)));
     });
-
     return tiles;
   }
 }
