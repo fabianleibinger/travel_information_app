@@ -1,13 +1,13 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import 'GoogleLatLng.dart';
+import 'LatLng.dart';
 
 part 'RoutingRequestWithoutMobilityPreferences.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class RoutingRequestWithoutMobilityPreferences {
-  GoogleLatLng origin;
-  GoogleLatLng destination;
+  LatLng origin;
+  LatLng destination;
   String routingService;
 
   RoutingRequestWithoutMobilityPreferences(

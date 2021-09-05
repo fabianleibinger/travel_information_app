@@ -1,17 +1,17 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'GoogleLatLng.dart';
+part of 'LatLng.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-GoogleLatLng _$GoogleLatLngFromJson(Map<String, dynamic> json) => GoogleLatLng(
+LatLng _$LatLngFromJson(Map<String, dynamic> json) => LatLng(
       (json['lat'] as num).toDouble(),
       (json['lng'] as num).toDouble(),
     );
 
-Map<String, dynamic> _$GoogleLatLngToJson(GoogleLatLng instance) =>
+Map<String, dynamic> _$LatLngToJson(LatLng instance) =>
     <String, dynamic>{
       'lat': instance.lat,
       'lng': instance.lng,

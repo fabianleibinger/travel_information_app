@@ -10,8 +10,8 @@ RoutingRequestWithoutMobilityPreferences
     _$RoutingRequestWithoutMobilityPreferencesFromJson(
             Map<String, dynamic> json) =>
         RoutingRequestWithoutMobilityPreferences(
-          GoogleLatLng.fromJson(json['origin'] as Map<String, dynamic>),
-          GoogleLatLng.fromJson(json['destination'] as Map<String, dynamic>),
+          LatLng.fromJson(json['origin'] as Map<String, dynamic>),
+          LatLng.fromJson(json['destination'] as Map<String, dynamic>),
           json['routingService'] as String,
         );
 

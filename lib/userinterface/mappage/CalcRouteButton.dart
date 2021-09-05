@@ -3,7 +3,7 @@ import 'package:travel_information_app/backend/ApiProvider.dart';
 import 'package:travel_information_app/models/preferenceservice/StandardRequest.dart';
 import 'package:travel_information_app/models/preferenceservice/user/preferenceprofiles/PreferenceProfile.dart';
 import 'package:travel_information_app/models/preferenceservice/user/profile/UserProfile.dart';
-import 'package:travel_information_app/models/routingservice/request/GoogleLatLng.dart';
+import 'package:travel_information_app/models/routingservice/request/LatLng.dart';
 import 'package:travel_information_app/models/routingservice/request/RoutingRequest.dart';
 import 'package:travel_information_app/models/routingservice/request/RoutingRequestWithoutMobilityPreferences.dart';
 import 'package:travel_information_app/models/routingservice/response/RoutingResponse.dart';
@@ -40,8 +40,8 @@ class CalcRouteButton extends StatelessWidget {
   /// Sends a routing request to the backend service.
   /// Builds the routing request.
   void _onPressed(BuildContext context) {
-    GoogleLatLng startLocation;
-    GoogleLatLng destinationLocation;
+    LatLng startLocation;
+    LatLng destinationLocation;
     String routingService;
     PreferenceProfile? preferenceProfile;
     UserProfile? userProfile;
@@ -55,11 +55,11 @@ class CalcRouteButton extends StatelessWidget {
     List<String> startLatLng = this.startLocationController.text.split(" ");
     List<String> destinationLatLng = this.destinationController.text.split(" ");
     try {
-      startLocation = GoogleLatLng(
+      startLocation = LatLng(
         double.tryParse(startLatLng.first)!,
         double.tryParse(startLatLng.last)!,
       );
-      destinationLocation = GoogleLatLng(
+      destinationLocation = LatLng(
         double.tryParse(destinationLatLng.first)!,
         double.tryParse(destinationLatLng.last)!,
       );

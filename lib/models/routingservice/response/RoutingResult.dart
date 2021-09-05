@@ -5,11 +5,13 @@ part 'RoutingResult.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class RoutingResult {
+  static const double DOUBLE_DEFAULT = -1.0;
+
   @JsonKey(defaultValue: "")
   String encodedPolyline;
-  @JsonKey(defaultValue: -1.0)
+  @JsonKey(defaultValue: DOUBLE_DEFAULT)
   double durationInMinutes;
-  @JsonKey(defaultValue: -1.0)
+  @JsonKey(defaultValue: DOUBLE_DEFAULT)
   double distanceInMeters;
   @JsonKey(defaultValue: "")
   String departureTime;

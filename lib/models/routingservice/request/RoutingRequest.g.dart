@@ -8,8 +8,8 @@ part of 'RoutingRequest.dart';
 
 RoutingRequest _$RoutingRequestFromJson(Map<String, dynamic> json) =>
     RoutingRequest(
-      GoogleLatLng.fromJson(json['origin'] as Map<String, dynamic>),
-      GoogleLatLng.fromJson(json['destination'] as Map<String, dynamic>),
+      LatLng.fromJson(json['origin'] as Map<String, dynamic>),
+      LatLng.fromJson(json['destination'] as Map<String, dynamic>),
       json['routingService'] as String,
       PreferenceProfile.fromJson(
           json['preferenceProfile'] as Map<String, dynamic>),
