@@ -25,11 +25,11 @@ Routes class handles all the information that is needed to navigate between diff
 ## userinterface
 
 Divided by the different pages of the app, this folder saves all the ui widgets.
-drawer is the side navigation bar of the app, which enables navigating between different pages.
-loginpage is used to log onto the preference service.
-mappage is the main page of the app, consisting of a map, the user location and start and destination text fields.
-preferenceprofilespage enables the user to access and edit preference profiles of the preference service. To be implemented.
+AppDrawer is the side navigation bar of the app, which enables navigating between different pages.
+LoginPage is used to log onto the preference service.
+MapPage is the main page of the app, consisting of a map, the user location and start and destination text fields.
+PreferenceProfilesPage enables the user to access and edit preference profiles of the preference service. To be implemented.
 routepages display calculated routes to support the user on a trip.
-settingspage contains basic settings and a log out button.
-signuppage enables signing up to the preference service.
-userprofilepage enables the user to access and edit his/her user profile.
+SettingsPage contains basic settings and a log out button.
+SignupPage enables signing up to the preference service.
+UserProfilePage enables the user to access and edit his/her user profile.
