@@ -3,14 +3,14 @@
 This is a project developed by Fabian Leibinger in terms of his bachelor thesis at Karlruhe Institut für Technologie (KIT) in cooperation with Forschungszentrum Informatik (FZI).
 A flutter project.
 
-The travel information app serves as the frontend of the travel information system, and therefore accesses the Mobility Gateway via Http.
-The Mobility Gateway is a gateway to a preference service and the Routing Gateway.
+The travel information app serves as the frontend of the travel information system, and therefore accesses the MobilityGateway via Http.
+The MobilityGateway is a gateway to a preference service and the RoutingGateway.
 The smartphone app, which is available for iOS and Android, is able to build routing requests according to the mobility preferences of a user.
 After receiving a response, the app displays calculated routes and supports the user on the trip.
 
 ## backend
 
-ApiProvider offers the connection to the Mobility Gateway. It enables the travel_information_app to send basic Http requests by specifying path and payload.
+ApiProvider offers the connection to the MobilityGateway. It enables the travel_information_app to send basic Http requests by specifying path and payload.
 
 ## models
 
