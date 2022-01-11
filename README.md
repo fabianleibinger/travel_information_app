@@ -22,7 +22,7 @@ At last the singleton user class represents the current user of the app and save
 
 Routes class handles all the information that is needed to navigate between different pages of the app.
 
-## userinterface
+## user interface
 
 Divided by the different pages of the app, this folder saves all the ui widgets.
 AppDrawer is the side navigation bar of the app, which enables navigating between different pages.
